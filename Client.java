@@ -46,6 +46,7 @@ public class Client {
                                 break;
                             }
                         }
+            } while (ans != JOptionPane.YES_OPTION && ans != JOptionPane.NO_OPTION);
         } catch (Exception e) {
             e.printStackTrace();
         }
