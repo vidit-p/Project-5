@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Marketplace {
+public class MarketplaceLogin {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
