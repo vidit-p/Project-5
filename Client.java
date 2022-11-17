@@ -15,7 +15,6 @@ public class Client {
         do {
 
             ans = JOptionPane.showConfirmDialog(null, "Do you currently have an account?", "Marketplace", JOptionPane.YES_NO_OPTION);
-
             if (ans == JOptionPane.YES_OPTION) {
                 do {
                     username = JOptionPane.showInputDialog(null, "Please enter your email or username:", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
