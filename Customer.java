@@ -1,4 +1,4 @@
-import java.io.*;
+]import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -40,6 +40,7 @@ public class Customer {
     }
 
     public void writeFile() {
+        initialise();
         File f = new File("database.txt");
         try {
             FileOutputStream fos = new FileOutputStream(f);
@@ -74,6 +75,7 @@ public class Customer {
 
     // Function to display all the products for sale
     public ArrayList<String> viewOverallMarket() {
+        initialise();
         File f = new File("database.txt");
         ArrayList<String> productList = new ArrayList<>();
         try {
@@ -99,6 +101,7 @@ public class Customer {
     //returns empty arrayList if there are no matches
     //in the main method check if this function returns an empty arraylist, if it does, print an error message
     public ArrayList<String> searchUsingTerms(String searchTerm) {
+        initialise();
         ArrayList<String> matchProducts = new ArrayList<String>();
         for (String product : allProducts) {
             if (product.toLowerCase().contains(searchTerm.toLowerCase())) {
@@ -112,6 +115,7 @@ public class Customer {
     //based on the productNumber parameter
     //if the product number is incorrect, it returns empty string
     public String viewProductInfo(int productNumber) {
+        initialise();
         String out = "";
         for (String product : allProducts) {
             String[] productArray = product.split(",");
@@ -131,6 +135,7 @@ public class Customer {
     //returns 1 if quantity > available quantity
     //writes the new available quantity of the product in the customer history file
     public int buyProduct(int productNumber, int quantity) {
+        initialise();
         File f = new File("customer history.txt");
         int index = -1;
         String productBought = "";
@@ -172,6 +177,7 @@ public class Customer {
 
     //returns a sorted arraylist of products (the text in the file) by price
     public ArrayList<String> sortByPrice() {
+        initialise();
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -191,6 +197,7 @@ public class Customer {
 
     //returns a sorted arraylist of products (the text in the file) by quantity
     public ArrayList<String> sortByQuantity() {
+        initialise();
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -210,6 +217,7 @@ public class Customer {
 
     //returns an arrayList containing the products customer has bought till now
     public ArrayList<String> viewHistory() {
+        initialise();
         ArrayList<String> history = new ArrayList<String>();
         try {
             File f = new File("customer history.txt");
@@ -232,6 +240,7 @@ public class Customer {
 
 
     public ArrayList<String> readCurrentShoppingCart(Customer customer) {
+        initialise();
         ArrayList<String> shoppingCart = new ArrayList<String>();
         try {
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
@@ -250,6 +259,7 @@ public class Customer {
     }
 
     public void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {
+        initialise();
         try {
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -264,6 +274,7 @@ public class Customer {
     }
 
     public void addToCart(String product, Customer customer) {
+        initialise();
         ArrayList<String> shoppingCart = new ArrayList<String>();
         shoppingCart = readCurrentShoppingCart(customer);
         shoppingCart.add(product);
@@ -271,12 +282,14 @@ public class Customer {
     }
 
     public void clearCart(Customer customer) throws IOException {
+        initialise();
         String file = customer.getEmail() + "ShoppingCart.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.close();
     }
 
     public void checkout(Customer customer) {
+        initialise();
         ArrayList<String> checkoutCart = readCurrentShoppingCart(customer);
         for (int i = 0; i < checkoutCart.size(); i++) {
             String splitMe = checkoutCart.get(i);
