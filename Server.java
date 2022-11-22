@@ -120,6 +120,8 @@ public class Server {
                                 // 1 to sort the market by price
                                 // 2 to sort the market by quantity
                                 // 3 to view shopping cart
+                                // 4 to view purchase history
+                                // 5 to search for products using a search term
                                 if (Integer.parseInt(option) == 1) {
                                     ArrayList<String> sortedMarket = customer.sortByPrice();
                                     pw.println(sortedMarket); // writes an arraylist containing the products on
@@ -144,10 +146,15 @@ public class Server {
                                     if (Integer.parseInt(next) == 1) {
                                         continue;
                                     } else if (Integer.parseInt(next) == 2) {
-                                        customer.checkout(customer);
-                                        customer.clearCart(customer);
-                                        pw.println("success"); // writes success if the shopping cart is
-                                        // successfully bought
+                                        int buy = customer.checkout(customer);
+                                        if (buy == 1) {
+                                            pw.println("failure"); // writes failure if any of the product is not available
+                                            // that is, has 0 quantity
+                                            // buys all other available products and clears the cart
+                                        } else {
+                                            pw.println("success"); // writes success if the shopping cart is
+                                            // successfully bought
+                                        }
                                     } else if (Integer.parseInt(next) == 3) {
                                         pw.println("okay"); // write a useless string to follow protocol
                                         boolean flag = false;
@@ -175,6 +182,17 @@ public class Server {
                                             customer.writeCurrentShoppingCart(currentCart, customer);
                                         } while (!flag);
                                     }
+                                } else if (Integer.parseInt(option) == 4) {
+                                    ArrayList<String> history = customer.viewHistory();
+                                    pw.println(history); // writes an arraylist to the client containing the purchase history
+                                    // each string contains the product bought by the customer
+                                    // returns empty arrayList if no products are bought till now
+                                } else if (Integer.parseInt(option) == 5) {
+                                    pw.println("okay");// write empty string to follow protocol
+                                    String searchTerm = br.readLine();// reads the search term
+                                    ArrayList<String> search = customer.searchUsingTerms(searchTerm);
+                                    pw.println(search); // writes an arrayList containing all the products related to search term
+                                    // returns an empty arrayList if there are no matches
                                 }
                             }
                         }

@@ -74,7 +74,6 @@ public class Customer {
 
     // Function to display all the products for sale
     public ArrayList<String> viewOverallMarket() {
-        initialise();
         File f = new File("database.txt");
         ArrayList<String> productList = new ArrayList<>();
         try {
@@ -100,7 +99,6 @@ public class Customer {
     //returns empty arrayList if there are no matches
     //in the main method check if this function returns an empty arraylist, if it does, print an error message
     public ArrayList<String> searchUsingTerms(String searchTerm) {
-        initialise();
         ArrayList<String> matchProducts = new ArrayList<String>();
         for (String product : allProducts) {
             if (product.toLowerCase().contains(searchTerm.toLowerCase())) {
@@ -114,7 +112,6 @@ public class Customer {
     //based on the productNumber parameter
     //if the product number is incorrect, it returns empty string
     public String viewProductInfo(int productNumber) {
-        initialise();
         String out = "";
         for (String product : allProducts) {
             String[] productArray = product.split(",");
@@ -134,7 +131,6 @@ public class Customer {
     //returns 1 if quantity > available quantity
     //writes the new available quantity of the product in the customer history file
     public int buyProduct(int productNumber, int quantity) {
-        initialise();
         File f = new File("customer history.txt");
         int index = -1;
         String productBought = "";
@@ -279,8 +275,10 @@ public class Customer {
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.close();
     }
-
-    public void checkout(Customer customer) throws IllegalArgumentException{
+    // returns 1 if any product is not available, i.e., has 0 quantity
+    // buys all the products except the products which are not available and clears the cart
+    // returns 2 if all products are available, buys the products and clears the cart
+    public int checkout(Customer customer) {
         boolean flag = false;
         ArrayList<String> checkoutCart = readCurrentShoppingCart(customer);
         for (int i = 0; i < checkoutCart.size(); i++) {
@@ -299,7 +297,9 @@ public class Customer {
             e.printStackTrace();
         }
         if (flag == true) {
-            throw new IllegalArgumentException();
+            return 1;
+        } else {
+            return 2;
         }
     }
 
