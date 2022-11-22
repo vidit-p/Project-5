@@ -73,8 +73,9 @@ public class Customer {
     }
 
     // Function to display all the products for sale
-    public void viewOverallMarket() {
+    public ArrayList<String> viewOverallMarket() {
         File f = new File("database.txt");
+        ArrayList<String> productList = new ArrayList<>();
         try {
             FileReader fr = new FileReader(f);
             BufferedReader bfr = new BufferedReader(fr);
@@ -82,13 +83,13 @@ public class Customer {
             String text = bfr.readLine();
             while (text != null) {
                 String[] product = text.split(",");
-                System.out.printf("Product Number: %s \t Product Name:%s \t Store Name: %s \t Price: %s\n",
-                        product[0], product[1], product[2], product[5]);
+                productList.add(product[0] + "," + product[1] + "," + product[2] + "," + product[5]);
                 text = bfr.readLine();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return productList;
     }
 
 
