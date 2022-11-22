@@ -1,4 +1,4 @@
-]import java.io.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -40,7 +40,6 @@ public class Customer {
     }
 
     public void writeFile() {
-        initialise();
         File f = new File("database.txt");
         try {
             FileOutputStream fos = new FileOutputStream(f);
@@ -177,7 +176,6 @@ public class Customer {
 
     //returns a sorted arraylist of products (the text in the file) by price
     public ArrayList<String> sortByPrice() {
-        initialise();
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -197,7 +195,6 @@ public class Customer {
 
     //returns a sorted arraylist of products (the text in the file) by quantity
     public ArrayList<String> sortByQuantity() {
-        initialise();
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -217,7 +214,6 @@ public class Customer {
 
     //returns an arrayList containing the products customer has bought till now
     public ArrayList<String> viewHistory() {
-        initialise();
         ArrayList<String> history = new ArrayList<String>();
         try {
             File f = new File("customer history.txt");
@@ -240,7 +236,6 @@ public class Customer {
 
 
     public ArrayList<String> readCurrentShoppingCart(Customer customer) {
-        initialise();
         ArrayList<String> shoppingCart = new ArrayList<String>();
         try {
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
@@ -258,8 +253,7 @@ public class Customer {
         return shoppingCart;
     }
 
-    public void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {
-        initialise();
+    public void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {;
         try {
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -274,7 +268,6 @@ public class Customer {
     }
 
     public void addToCart(String product, Customer customer) {
-        initialise();
         ArrayList<String> shoppingCart = new ArrayList<String>();
         shoppingCart = readCurrentShoppingCart(customer);
         shoppingCart.add(product);
@@ -282,27 +275,32 @@ public class Customer {
     }
 
     public void clearCart(Customer customer) throws IOException {
-        initialise();
         String file = customer.getEmail() + "ShoppingCart.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.close();
     }
 
-    public void checkout(Customer customer) {
-        initialise();
+    public void checkout(Customer customer) throws IllegalArgumentException{
+        boolean flag = false;
         ArrayList<String> checkoutCart = readCurrentShoppingCart(customer);
         for (int i = 0; i < checkoutCart.size(); i++) {
             String splitMe = checkoutCart.get(i);
             String[] parameters = splitMe.split(",");
             int productNumber = Integer.parseInt(parameters[0]);
-            buyProduct(productNumber, 1);
+            if (Integer.parseInt(parameters[4]) <= 0) {
+                flag = true;
+                continue;
+            }
+            int buy = buyProduct(productNumber, 1);
         }
         try {
             clearCart(customer);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        if (flag == true) {
+            throw new IllegalArgumentException();
+        }
     }
 
 
