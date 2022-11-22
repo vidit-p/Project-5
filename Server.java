@@ -110,6 +110,7 @@ public class Server {
                             Customer customer = new Customer (username, password);
                             String str = br.readLine(); // read an empty string to follow protocol
                             while (true) {
+                                //TODO: resolve the view product issue
                                 ArrayList<String> productList = customer.viewOverallMarket();
                                 pw.println(productList); // writes an array list to the client
                                 //containing all the products in the market
@@ -122,6 +123,7 @@ public class Server {
                                 // 3 to view shopping cart
                                 // 4 to view purchase history
                                 // 5 to search for products using a search term
+                                // 6 to view product info
                                 if (Integer.parseInt(option) == 1) {
                                     ArrayList<String> sortedMarket = customer.sortByPrice();
                                     pw.println(sortedMarket); // writes an arraylist containing the products on
@@ -193,6 +195,23 @@ public class Server {
                                     ArrayList<String> search = customer.searchUsingTerms(searchTerm);
                                     pw.println(search); // writes an arrayList containing all the products related to search term
                                     // returns an empty arrayList if there are no matches
+                                } else if (Integer.parseInt(option) == 6) {
+                                    pw.println("okay"); // write empty string to follow protocol
+                                    String productNumber = br.readLine(); // reads product number whose information is needed
+                                    String info = customer.viewProductInfo(Integer.parseInt(productNumber));
+                                    pw.println(info); // writes the string containing the product to the client
+
+                                    String next = br.readLine(); // reads what the user wants to do next
+                                    // 1. if the user wants to buy product
+                                    // 2. if the user wants to add to shopping cart
+
+                                    if (Integer.parseInt(next) == 1) {
+                                        pw.println("okay");
+                                        String quantity = br.readLine(); // reads quantity from the server
+                                        customer.buyProduct(Integer.parseInt(productNumber), Integer.parseInt(quantity));
+                                    } else if (Integer.parseInt(next) == 2) {
+                                        customer.addToCart(Integer.parseInt(productNumber), customer);
+                                    }
                                 }
                             }
                         }
