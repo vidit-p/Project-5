@@ -500,98 +500,98 @@ public class MarketplaceLogin {
                                                 }
                                             }
                                         } else {
-                                                        JOptionPane.showMessageDialog(null, "Invalid input! Please try again.", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                                            JOptionPane.showMessageDialog(null, "Invalid input! Please try again.", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
 
-                                                    }
-                                                }
-                                            }
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "Incorrect password! Please try again.", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
                                         }
-                                    } while (!line.substring(line.indexOf('_') + 1).equals(password));
+                                    }
                                 }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Incorrect password! Please try again.", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
                             }
-                            JOptionPane.showMessageDialog(null, "There is no current account with this username. Try again.", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
-                            if (!realUsername.equals(username)) {
-                                break;
-                            }
-                        }
-                    } catch (Exception e) {
-
+                        } while (!line.substring(line.indexOf('_') + 1).equals(password));
                     }
-                } while (!username.equals(realUsername));
-
-            } else if (ans == JOptionPane.NO_OPTION) {
-                do {
-                    System.out.println("Would you like to create an account?");
-                    System.out.println("1 = Yes, 2 = No");
-                    b = scanner.nextLine();
-                    if (b.equals("1")) {
-                        do {
-                            System.out.println("Please enter your email or username: (must not contain spaces or underscores)");
-                            username = scanner.nextLine();
-                            if (username.contains(" ") || username.contains("_")) {
-                                System.out.println("No spaces or underscores are allowed!");
-                            }
-                        } while (username.contains(" ") || username.contains("_"));
-
-                        do {
-                            do {
-                                System.out.println("Please enter a password: (must not contain spaces or underscores)");
-                                password = scanner.nextLine();
-                                if (password.contains(" ") || password.contains("_")) {
-                                    System.out.println("No spaces or underscores are allowed!");
-                                }
-                            } while (password.contains(" ") || password.contains("_"));
-
-                            System.out.println("Please reenter the password:");
-                            password2 = scanner.nextLine();
-
-                            if (!password.equals(password2)) {
-                                System.out.println("Passwords do not match! Try again.");
-                            }
-
-                        } while (!password.equals(password2));
-
-                        do {
-                            System.out.println("Are you looking to be a seller or customer?");
-                            System.out.println("1 = Seller, 2 = Customer");
-                            sellerOrCustomer = scanner.nextLine();
-
-                            if (!sellerOrCustomer.equals("1") && !sellerOrCustomer.equals("2")) {
-                                System.out.println("Invalid input! Please try again.");
-                            }
-                        } while (!sellerOrCustomer.equals("1") & !sellerOrCustomer.equals("2"));
-
-                        try {
-                            BufferedWriter bw = new BufferedWriter(new FileWriter("accounts.txt", true));
-                            BufferedReader br = new BufferedReader(new FileReader("accounts.txt"));
-
-                            bw.write(sellerOrCustomer + " " + username + "_" + password + "\n");
-
-                            bw.close();
-
-                            System.out.println("Account successfully created!");
-                            System.out.println("Please run the program again to log in.");
-
-                        } catch (Exception e) {
-                            System.out.println("Unable to create account.");
-                        }
-
-                    } else if (b.equals("2")) {
-
-                        System.out.println("Thank you for using the Online Marketplace!");
-                        return;
-
-                    } else {
-                        System.out.println("Invalid input. Please try again.");
-                    }
-                } while (!b.equals("1"));
-
-            } else {
-                System.out.println("Invalid input. Please try again.");
+                }
+                JOptionPane.showMessageDialog(null, "There is no current account with this username. Try again.", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                if (!realUsername.equals(username)) {
+                    break;
+                }
             }
-        } while (!a.equals("1") && !a.equals("2"));
-    }
+        } catch (Exception e) {
 
-}
+        }
+    } while (!username.equals(realUsername));
+
+} else if (ans == JOptionPane.NO_OPTION) {
+        do {
+        System.out.println("Would you like to create an account?");
+        System.out.println("1 = Yes, 2 = No");
+        b = scanner.nextLine();
+        if (b.equals("1")) {
+        do {
+        System.out.println("Please enter your email or username: (must not contain spaces or underscores)");
+        username = scanner.nextLine();
+        if (username.contains(" ") || username.contains("_")) {
+        System.out.println("No spaces or underscores are allowed!");
+        }
+        } while (username.contains(" ") || username.contains("_"));
+
+        do {
+        do {
+        System.out.println("Please enter a password: (must not contain spaces or underscores)");
+        password = scanner.nextLine();
+        if (password.contains(" ") || password.contains("_")) {
+        System.out.println("No spaces or underscores are allowed!");
+        }
+        } while (password.contains(" ") || password.contains("_"));
+
+        System.out.println("Please reenter the password:");
+        password2 = scanner.nextLine();
+
+        if (!password.equals(password2)) {
+        System.out.println("Passwords do not match! Try again.");
+        }
+
+        } while (!password.equals(password2));
+
+        do {
+        System.out.println("Are you looking to be a seller or customer?");
+        System.out.println("1 = Seller, 2 = Customer");
+        sellerOrCustomer = scanner.nextLine();
+
+        if (!sellerOrCustomer.equals("1") && !sellerOrCustomer.equals("2")) {
+        System.out.println("Invalid input! Please try again.");
+        }
+        } while (!sellerOrCustomer.equals("1") & !sellerOrCustomer.equals("2"));
+
+        try {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("accounts.txt", true));
+        BufferedReader br = new BufferedReader(new FileReader("accounts.txt"));
+
+        bw.write(sellerOrCustomer + " " + username + "_" + password + "\n");
+
+        bw.close();
+
+        System.out.println("Account successfully created!");
+        System.out.println("Please run the program again to log in.");
+
+        } catch (Exception e) {
+        System.out.println("Unable to create account.");
+        }
+
+        } else if (b.equals("2")) {
+
+        System.out.println("Thank you for using the Online Marketplace!");
+        return;
+
+        } else {
+        System.out.println("Invalid input. Please try again.");
+        }
+        } while (!b.equals("1"));
+
+        } else {
+        System.out.println("Invalid input. Please try again.");
+        }
+        } while (!a.equals("1") && !a.equals("2"));
+        }
+
+        }
