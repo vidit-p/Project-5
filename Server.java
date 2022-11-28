@@ -46,7 +46,9 @@ public class Server {
                     try {
                         while (true) {
                             String account = br.readLine();// input if the account exists or not
-                            pw.println("okay"); // write an empty string to follow protocol
+                            pw.write(""); // write an empty string to follow protocol
+                            pw.println();
+                            pw.flush();
                             String user = "";
                             if (account.equals("1")) {
                                 while (exist == false) {
@@ -59,9 +61,13 @@ public class Server {
                                         }
                                     }
                                     if (exist == true) {
-                                        pw.println(true); // write true if the account exists
+                                        pw.write("true"); // write true if the account exists
+                                        pw.println();
+                                        pw.flush();
                                     } else {
-                                        pw.println(false);// write false if the account does not exist
+                                        pw.write("false");// write false if the account does not exist
+                                        pw.println();
+                                        pw.flush();
                                     }
                                 }
 
@@ -75,10 +81,12 @@ public class Server {
                                     }
 
                                     if (correct == true) {
-                                        pw.println(true); // writes true if the password is correct
+                                        pw.write("true"); // writes true if the password is correct
                                     } else {
-                                        pw.println(false); // writes false if the password is incorrect
+                                        pw.write("false"); // writes false if the password is incorrect
                                     }
+                                    pw.println();
+                                    pw.flush();
                                 }
                                 break;
                             } else {
@@ -86,7 +94,9 @@ public class Server {
                                 // account or customer account
                                 // 1 for customer and 2 for seller
 
-                                pw.println("okay"); // write an empty string to follow protocol
+                                pw.write(""); // write an empty string to follow protocol
+                                pw.println();
+                                pw.flush();
                                 boolean right = false;
                                 while (right == true) {
                                     username = br.readLine(); // reads the username for new account
@@ -94,13 +104,19 @@ public class Server {
                                     for (String line : loginText) {
                                         String[] lineArray = line.split(",");
                                         if (lineArray[1].equals(username)) {
-                                            pw.println(false); //write false if the username already exists
+                                            pw.write("false"); //write false if the username already exists
+                                            pw.println();
+                                            pw.flush();
                                         } else {
                                             right = true;
-                                            pw.println(true); //write true if the username is valid
+                                            pw.write("true"); //write true if the username is valid
+                                            pw.println();
+                                            pw.flush();
                                         }
                                         password = br.readLine(); // read password for the new account
-                                        pw.println(""); // write empty string to follow protocol
+                                        pw.write(""); // write empty string to follow protocol
+                                        pw.println();
+                                        pw.flush();
                                     }
                                     pw1.println(role + "," + username + "," + password);
                                 }
@@ -112,7 +128,12 @@ public class Server {
                             while (true) {
                                 //TODO: resolve the view product issue
                                 ArrayList<String> productList = customer.viewOverallMarket();
-                                pw.println(productList); // writes an array list to the client
+                                String out = String.join(";", productList);
+                                pw.write(out); // writes an array list converted to string to the client
+                                // each product will be separated by ';'. So split the string with ';' as the
+                                // separator
+                                pw.println();
+                                pw.flush();
                                 //containing all the products in the market
                                 // each string contains product number, product name, store name and price
                                 // all the values are separated by a coma
@@ -124,22 +145,38 @@ public class Server {
                                 // 4 to view purchase history
                                 // 5 to search for products using a search term
                                 // 6 to view product info
+                                // 7 to exit
                                 if (Integer.parseInt(option) == 1) {
                                     ArrayList<String> sortedMarket = customer.sortByPrice();
-                                    pw.println(sortedMarket); // writes an arraylist containing the products on
+                                    String output = String.join(";", sortedMarket);
+                                    pw.write(output); // writes an arraylist as a string containing the products on
                                     // the market sorted by price
+                                    // each product will be separated by ';'. So split the string with ';' as the
+                                    // separator
                                     //each string contains everything except the seller's username
                                     //refer to sortByPrice method in Customer class
+                                    pw.println();
+                                    pw.flush();
                                 } else if (Integer.parseInt(option) == 2) {
                                     ArrayList<String> sortedMarket = customer.sortByQuantity();
-                                    pw.println(sortedMarket); // writes an arraylist containing the products on
+                                    String output = String.join(";", sortedMarket);
+                                    pw.write(output); // writes an arraylist as a string containing the products on
                                     // the market sorted by quantity
+                                    // each product will be separated by ';'. So split the string with ';' as the
+                                    // separator
                                     //each string contains everything except the seller's username
                                     //refer to sortByQuantity method in Customer class
+                                    pw.println();
+                                    pw.flush();
                                 } else if (Integer.parseInt(option) == 3) {
                                     ArrayList<String> cart = customer.readCurrentShoppingCart(customer);
-                                    pw.println(cart); // writes an arrayList containing all the products in the
+                                    String output = String.join(";", cart);
+                                    pw.write(output); // writes an arrayList as a stirng containing all the products in the
                                     // shopping cart
+                                    // each product will be separated by ';'. So split the string with ';' as the
+                                    // separator
+                                    pw.println();
+                                    pw.flush();
                                     String next = br.readLine(); // reads what the customer wants to do next
                                     // 1 if the cart is empty: will take the customer back to the product list
                                     // 2 if the customer wants to but the cart
@@ -150,15 +187,21 @@ public class Server {
                                     } else if (Integer.parseInt(next) == 2) {
                                         int buy = customer.checkout(customer);
                                         if (buy == 1) {
-                                            pw.println("failure"); // writes failure if any of the product is not available
+                                            pw.write("failure"); // writes failure if any of the product is not available
                                             // that is, has 0 quantity
                                             // buys all other available products and clears the cart
+                                            pw.println();
+                                            pw.flush();
                                         } else {
-                                            pw.println("success"); // writes success if the shopping cart is
+                                            pw.write("success"); // writes success if the shopping cart is
                                             // successfully bought
+                                            pw.println();
+                                            pw.flush();
                                         }
                                     } else if (Integer.parseInt(next) == 3) {
-                                        pw.println("okay"); // write a useless string to follow protocol
+                                        pw.write("okay"); // write a useless string to follow protocol
+                                        pw.println();
+                                        pw.flush();
                                         boolean flag = false;
                                         do {
                                             String productNumber = br.readLine(); // reads the product number of the
@@ -176,44 +219,103 @@ public class Server {
                                                 }
                                             }
                                             if (flag == false) {
-                                                pw.println(1); // writes 1 if the product number is incorrect
+                                                pw.write(1); // writes 1 if the product number is incorrect
+                                                pw.println();
+                                                pw.flush();
                                                 continue;
                                             } else {
-                                                pw.println(2); //writes 2 if the product is successfully deleted
+                                                pw.write(2); //writes 2 if the product is successfully deleted
+                                                pw.println();
+                                                pw.flush();
                                             }
                                             customer.writeCurrentShoppingCart(currentCart, customer);
                                         } while (!flag);
                                     }
                                 } else if (Integer.parseInt(option) == 4) {
                                     ArrayList<String> history = customer.viewHistory();
-                                    pw.println(history); // writes an arraylist to the client containing the purchase history
+                                    String output = String.join(";", history);
+                                    pw.write(output); // writes an arraylist as a string to the client containing the purchase history
                                     // each string contains the product bought by the customer
+                                    // each product will be separated by ';'. So split the string with ';' as the
+                                    // separator
                                     // returns empty arrayList if no products are bought till now
+                                    pw.println();
+                                    pw.flush();
                                 } else if (Integer.parseInt(option) == 5) {
-                                    pw.println("okay");// write empty string to follow protocol
+                                    pw.write("okay");// write empty string to follow protocol
+                                    pw.println();
+                                    pw.flush();
                                     String searchTerm = br.readLine();// reads the search term
                                     ArrayList<String> search = customer.searchUsingTerms(searchTerm);
-                                    pw.println(search); // writes an arrayList containing all the products related to search term
+                                    String output = String.join(";", search);
+                                    pw.write(output); // writes an arrayList containing all the products related to search term
                                     // returns an empty arrayList if there are no matches
+                                    // each product will be separated by ';'. So split the string with ';' as the
+                                    // separator
                                 } else if (Integer.parseInt(option) == 6) {
-                                    pw.println("okay"); // write empty string to follow protocol
+                                    pw.write("okay"); // write empty string to follow protocol
+                                    pw.println();
+                                    pw.flush();
                                     String productNumber = br.readLine(); // reads product number whose information is needed
                                     String info = customer.viewProductInfo(Integer.parseInt(productNumber));
-                                    pw.println(info); // writes the string containing the product to the client
+                                    pw.write(info); // writes the string containing the product to the client
+                                    pw.println();
+                                    pw.flush();
 
                                     String next = br.readLine(); // reads what the user wants to do next
                                     // 1. if the user wants to buy product
                                     // 2. if the user wants to add to shopping cart
 
                                     if (Integer.parseInt(next) == 1) {
-                                        pw.println("okay");
+                                        pw.write("okay");
+                                        pw.println();
+                                        pw.flush();
                                         String quantity = br.readLine(); // reads quantity from the server
-                                        customer.buyProduct(Integer.parseInt(productNumber), Integer.parseInt(quantity));
+                                        int buy = customer.buyProduct(Integer.parseInt(productNumber), Integer.parseInt(quantity));
+                                        if (buy == 0) {
+                                            pw.write("SUCCESS"); // writes success if the product was bought successfully
+                                            pw.println();
+                                            pw.flush();
+                                        } else if (buy == 1) {
+                                            pw.write("ERROR"); // writes error if the quantity is greater than the available quantity
+                                            pw.println();
+                                            pw.flush();
+                                        }
                                     } else if (Integer.parseInt(next) == 2) {
                                         customer.addToCart(Integer.parseInt(productNumber), customer);
+                                        pw.write("SUCCESS"); // writes success if the product was successfully added to cart
+                                        pw.println();
+                                        pw.flush();
+                                    }
+                                } else if (Integer.parseInt(option) == 7) {
+                                    break;
+                                }
+                            }
+                        } else {
+                            while (true) {
+                                Seller seller = new Seller(username, password);
+                                String option = br.readLine(); // reads what the seller wants to do
+                                // 1. If the seller wants to add a new product
+
+                                if (Integer.parseInt(option) == 1) {
+                                    pw.println(""); //writes an empty string to follow protocol
+
+                                    String product = br.readLine(); // reads the product details from the user
+                                    // the string should be in the following format: storeName,productName,sellerName,
+                                    // description,quantity,price
+
+                                    String[] productArray = product.split(",");
+                                    int add = seller.addProduct(productArray[0], productArray[1], productArray[2], productArray[3],
+                                            Integer.parseInt(productArray[4]), Double.parseDouble(productArray[5]));
+
+                                    if (add == 1) {
+                                        pw.println("ERROR"); // writes error if the store is not owned by the seller
+                                    } else if (add == 2) {
+                                        pw.println("SUCCESS"); // writes success if the product is successfully added
                                     }
                                 }
                             }
+
                         }
 
 
@@ -221,7 +323,7 @@ public class Server {
 
 
                     } catch (SocketException e) {
-                        continue;
+                        break;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
