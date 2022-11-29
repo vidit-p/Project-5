@@ -250,14 +250,6 @@ public class GUIWaitingArea {
         contentPane.add(screens);
     }
 
-    public void putScreensTogether(Container contentPane) {
-        screens = new JPanel(new CardLayout());
-        loginScreen();
-        screens.add(loginScreen, "loginScreen");
-        createAccScreen();
-        screens.add(createAccScreen, "createAccScreen");
-        contentPane.add(screens);
-    }
     public static void displayGUI() {
         JFrame frame = new JFrame(frameTitle);
         frame.setSize(960, 720);
