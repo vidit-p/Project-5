@@ -124,6 +124,7 @@ public class Server {
                         }
                         if (role.equals("1")) {
                             Customer customer = new Customer (username, password);
+                            customer.initialise();
                             String str = br.readLine(); // read an empty string to follow protocol
                             while (true) {
                                 //TODO: resolve the view product issue
@@ -294,11 +295,14 @@ public class Server {
                         } else {
                             while (true) {
                                 Seller seller = new Seller(username, password);
+                                seller.initialise();
                                 String option = br.readLine(); // reads what the seller wants to do
                                 // 1. If the seller wants to add a new product
 
                                 if (Integer.parseInt(option) == 1) {
-                                    pw.println(""); //writes an empty string to follow protocol
+                                    pw.write(""); //writes an empty string to follow protocol
+                                    pw.println();
+                                    pw.flush();
 
                                     String product = br.readLine(); // reads the product details from the user
                                     // the string should be in the following format: storeName,productName,sellerName,
@@ -309,9 +313,13 @@ public class Server {
                                             Integer.parseInt(productArray[4]), Double.parseDouble(productArray[5]));
 
                                     if (add == 1) {
-                                        pw.println("ERROR"); // writes error if the store is not owned by the seller
+                                        pw.write("ERROR"); // writes error if the store is not owned by the seller
+                                        pw.println();
+                                        pw.flush();
                                     } else if (add == 2) {
-                                        pw.println("SUCCESS"); // writes success if the product is successfully added
+                                        pw.write("SUCCESS"); // writes success if the product is successfully added
+                                        pw.println();
+                                        pw.flush();
                                     }
                                 }
                             }
