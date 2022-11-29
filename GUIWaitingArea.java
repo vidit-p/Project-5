@@ -12,6 +12,7 @@ public class GUIWaitingArea {
     JPanel screens;
     JPanel loginScreen;
     JPanel createAccScreen;
+    JPanel marketBrowseCustomer;
 
     public void loginScreen() {
         loginScreen = new JPanel();
@@ -150,6 +151,103 @@ public class GUIWaitingArea {
                 cardLayout.show(screens, "loginScreen");
             }
         });
+    }
+
+    public void marketBrowseCustomer() {
+        marketBrowseCustomer = new JPanel();
+        marketBrowseCustomer.setLayout(new BoxLayout(marketBrowseCustomer, BoxLayout.Y_AXIS));
+
+        JPanel firstPanel = new JPanel();
+        firstPanel.setLayout(new FlowLayout());
+        ImageIcon logoIcon = new ImageIcon("Digital Marketplace logo.png");
+        Image logoImage = logoIcon.getImage();
+        logoImage = logoImage.getScaledInstance(253, 100, Image.SCALE_SMOOTH);
+        JLabel logo = new JLabel(new ImageIcon(logoImage));
+        JTextField searchField = new JTextField(20);
+        JButton searchButton = new JButton("Search");
+        JButton cartButton = new JButton("Shopping cart");
+        JButton historyButton = new JButton("History");
+        firstPanel.add(logo);
+        firstPanel.add(Box.createVerticalStrut(35));
+        firstPanel.add(searchField);
+        firstPanel.add(searchButton);
+        firstPanel.add(Box.createVerticalStrut(35));
+        firstPanel.add(cartButton);
+        firstPanel.add(historyButton);
+
+        JPanel secondPanel = new JPanel();
+        secondPanel.setLayout(new FlowLayout());
+        JLabel productsLabel = new JLabel("Products:");
+        JComboBox productsDropdown = new JComboBox();
+        JLabel sortLabel = new JLabel("Sort by:");
+        JComboBox sortDropdown = new JComboBox();
+        secondPanel.add(productsLabel);
+        secondPanel.add(productsDropdown);
+        secondPanel.add(sortLabel);
+        secondPanel.add(sortDropdown);
+
+        JPanel productPanel = new JPanel();
+        productPanel.setPreferredSize(new Dimension(900, 500));
+        productPanel.setMaximumSize(productPanel.getPreferredSize());
+        productPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        productPanel.setLayout(new BorderLayout());
+
+        JPanel productInfo = new JPanel();
+        productInfo.setLayout(new BoxLayout(productInfo, BoxLayout.Y_AXIS));
+        JLabel productNameLabel = new JLabel("Insert product name");
+        productNameLabel.setFont(new Font("Calibri", Font.BOLD, 36));
+        productNameLabel.setAlignmentX(Box.LEFT_ALIGNMENT);
+        JLabel storeNameLabel = new JLabel("Sold by insert store name");
+        storeNameLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+        storeNameLabel.setAlignmentX(Box.LEFT_ALIGNMENT);
+        JLabel priceLabel = new JLabel("$9.99");
+        priceLabel.setFont(new Font("Calibri", Font.PLAIN, 24));
+        priceLabel.setAlignmentX(Box.LEFT_ALIGNMENT);
+        JLabel descriptionLabel = new JLabel("Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
+                " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
+                " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
+                " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+                " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        descriptionLabel.setAlignmentX(Box.LEFT_ALIGNMENT);
+        productInfo.add(productNameLabel);
+        productInfo.add(storeNameLabel);
+        productInfo.add(priceLabel);
+        productInfo.add(descriptionLabel);
+
+        JPanel productActionPanel = new JPanel();
+        productActionPanel.setLayout(new BoxLayout(productActionPanel, BoxLayout.Y_AXIS));
+        JPanel quantityPanel = new JPanel();
+        JLabel quantityLabel = new JLabel("Quantity:");
+        JTextField quantityField = new JTextField(5);
+        quantityPanel.add(quantityLabel);
+        quantityPanel.add(quantityField);
+        JButton addToCartButton = new JButton("Add to cart");
+        productActionPanel.add(quantityPanel);
+        productActionPanel.add(addToCartButton);
+
+        productPanel.add(productInfo, BorderLayout.WEST);
+        productPanel.add(productActionPanel, BorderLayout.EAST);
+
+        JButton logOutButton = new JButton("Log out");
+
+        marketBrowseCustomer.add(Box.createHorizontalStrut(10));
+        marketBrowseCustomer.add(firstPanel);
+        marketBrowseCustomer.add(secondPanel);
+        marketBrowseCustomer.add(productPanel);
+        marketBrowseCustomer.add(Box.createHorizontalStrut(10));
+        marketBrowseCustomer.add(logOutButton);
+        marketBrowseCustomer.add(Box.createHorizontalStrut(10));
+    }
+
+    public void putScreensTogether(Container contentPane) {
+        screens = new JPanel(new CardLayout());
+        loginScreen();
+        screens.add(loginScreen, "loginScreen");
+        createAccScreen();
+        screens.add(createAccScreen, "createAccScreen");
+        marketBrowseCustomer();
+        screens.add(marketBrowseCustomer, "marketBrowseCustomer");
+        contentPane.add(screens);
     }
 
     public void putScreensTogether(Container contentPane) {
