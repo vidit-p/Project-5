@@ -150,16 +150,29 @@ public class Client {
 
                         String products = br.readLine();
                         String[] productArray = products.split(";");
+                        String[] display = new String[productArray.length];
+                        int index = 0;
                         for (String line : productArray) {
+                            String[] lineArray = line.split(",");
+                            System.out.println(lineArray.toString());
+                            display[index] = String.format("Product Number: %s, Product Name: %s, Store name: %s" +
+                                            ", Price: %s", lineArray[0],
+                                    lineArray[1], lineArray[2], lineArray[3]);
+                            index++;
 
                         }
                         String productOption = (String) JOptionPane.showInputDialog(null, "" +
                                         "Select the product you would like to see information about",
-                                "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, productArray,
-                                productArray[0]);
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, display,
+                                display[0]);
+
+                        String productNumber;
 
                         if (productOption == null) {
                             return;
+                        } else {
+                            productNumber = productOption.substring(16, 23);
+                            System.out.println(productNumber);
                         }
 
                         pw.write("6");
@@ -169,12 +182,18 @@ public class Client {
                         String empty = br.readLine();
 
                         String[] productOptionArray = productOption.split(",");
-                        pw.write(productOptionArray[0]);
+                        pw.write(productNumber);
                         pw.println();
                         pw.flush();
 
                         String info = br.readLine();
-                        String next = JOptionPane.showInputDialog(null, info, "Product info", JOptionPane.INFORMATION_MESSAGE);
+                        String[] outArray = info.split(",");
+                        String out = ""
+                        String[] next = new String[2];
+                        next[0] = "Buy product";
+                        next[1] = "Add to cart";
+                        String next1 = (String) JOptionPane.showInputDialog(null, info + " .What would you like" +
+                                "to do next", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
                     }
                 }
             }
