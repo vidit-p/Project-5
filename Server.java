@@ -85,11 +85,15 @@ public class Server {
                                         pw.write("true"); // writes true if the password is correct
                                         pw.println();
                                         pw.flush();
+                                        break;
                                     } else {
                                         pw.write("false"); // writes false if the password is incorrect
+                                        pw.println();
+                                        pw.flush();
                                     }
-                                    pw.println();
-                                    pw.flush();
+                                }
+                                if (correct == true) {
+                                    break;
                                 }
                             } else {
                                 role = br.readLine();// reads if the new account is seller
@@ -129,9 +133,9 @@ public class Server {
                             customer.initialise();
                             String str = br.readLine(); // read an empty string to follow protocol
 
-                            System.out.println("hi");
+                            System.out.println("role: " + role);
 
-                            pw.write("1");
+                            pw.write(role);
                             pw.println();
                             pw.flush();
                             System.out.println("hello");
