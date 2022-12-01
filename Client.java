@@ -200,15 +200,26 @@ public class Client {
                         pw.println();
                         pw.flush();
 
-                        String output = br.readLine();
-                        System.out.println(output);
-                        System.out.println(output);
-                        String[] productsPrice = output.split(";");
+                        String products = br.readLine();
+                        String[] productArray = products.split(";");
+                        String[] display = new String[productArray.length];
+                        int index = 0;
+                        for (String line : productArray) {
+                            String[] lineArray = line.split(",");
+                            System.out.println(lineArray.toString());
+                            display[index] = String.format("Product Number: %s, Product Name: %s, Store name: %s" +
+                                            ", Price: $%s", lineArray[0],
+                                    lineArray[1], lineArray[2], lineArray[5]);
+                            index++;
 
-                        JOptionPane.showInputDialog(null, "" +
+                        }
+
+                        String productOption = (String) JOptionPane.showInputDialog(null, "" +
                                         "Products sorted by price:",
-                                "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, productsPrice,
-                                productsPrice[0]);
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, display,
+                                display[0]);
+
+
                         // TODO sort the market by price
                     }
                 }
