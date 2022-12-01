@@ -58,14 +58,16 @@ public class Client {
                         if (success.equals("true")) {
                             JOptionPane.showMessageDialog(null, "Successfully logged in! " +
                                     "Welcome to Online Marketplace!", "Welcome", JOptionPane.INFORMATION_MESSAGE);
+                            break;
 
 
                         } else {
                             JOptionPane.showMessageDialog(null, "Incorrect password! Please try again",
                                     "Incorrect password", JOptionPane.ERROR_MESSAGE);
-                            break;
                         }
-                    } while (success.equals("true"));
+                    } while (success.equals("false"));
+
+                    break;
 
 
                 } else if (exist.equals("Create new account")) {
@@ -117,6 +119,38 @@ public class Client {
                             "application to login", "Success!", JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
+            }
+
+            System.out.println("here");
+            pw.write(" ");
+            pw.println();
+            pw.flush();
+
+            String role = br.readLine();
+            System.out.println(role);
+            if (role.equals("1")) {
+                String[] options = {"View all the products", "Sort the market by price", "sort the market by " +
+                        "quantity", "View shopping cart", "View purchase history", "Search for product using " +
+                        "search term", "View product info", "Exit"};
+
+                String option = (String) JOptionPane.showInputDialog(null, "Please select what " +
+                                "you would like to do", "Menu", JOptionPane.INFORMATION_MESSAGE, null,
+                        options, options[0]);
+
+                if (option.equals("View all the products")) {
+                    pw.write("7");
+                    pw.println();
+                    pw.flush();
+
+                    String products = br.readLine();
+                    String[] productArray = products.split(";");
+                    String productOption = (String) JOptionPane.showInputDialog(null, "" +
+                                    "Select the product you would like to see information about",
+                            "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, productArray,
+                            productArray[0]);
+                }
+
+
             }
 
 
