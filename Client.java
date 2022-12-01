@@ -188,12 +188,28 @@ public class Client {
 
                         String info = br.readLine();
                         String[] outArray = info.split(",");
-                        String out = ""
+                        String out = "";
                         String[] next = new String[2];
                         next[0] = "Buy product";
                         next[1] = "Add to cart";
-                        String next1 = (String) JOptionPane.showInputDialog(null, info + " .What would you like" +
-                                "to do next", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
+                        String next1 = (String) JOptionPane.showInputDialog(null, info + "What would you like" +
+                                "to do next?", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
+                    } else if (option.equals("Sort the market by price")) {
+
+                        pw.write("1");
+                        pw.println();
+                        pw.flush();
+
+                        String output = br.readLine();
+                        System.out.println(output);
+                        System.out.println(output);
+                        String[] productsPrice = output.split(";");
+
+                        JOptionPane.showInputDialog(null, "" +
+                                        "Products sorted by price:",
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, productsPrice,
+                                productsPrice[0]);
+                        // TODO sort the market by price
                     }
                 }
             }
