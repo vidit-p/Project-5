@@ -133,24 +133,22 @@ public class Server {
                             customer.initialise();
                             String str = br.readLine(); // read an empty string to follow protocol
 
-                            System.out.println("role: " + role);
 
                             pw.write(role);
                             pw.println();
                             pw.flush();
-                            System.out.println("hello");
                             while (true) {
                                 //TODO: resolve the view product issue
 
                                 String option = br.readLine();// read what the customer wants to do
-                                // 1 to sort the market by price
-                                // 2 to sort the market by quantity
+                                // 1 to sort the market by price -
+                                // 2 to sort the market by quantity -
                                 // 3 to view shopping cart
                                 // 4 to view purchase history
-                                // 5 to search for products using a search term
-                                // 6 to view product info
-                                // 7 to view the marketplace without sorting
-                                // 8 to exit
+                                // 5 to search for products using a search term -
+                                // 6 to view product info -
+                                // 7 to view the marketplace without sorting -
+                                // 8 to exit -
                                 if (Integer.parseInt(option) == 1) {
                                     ArrayList<String> sortedMarket = customer.sortByPrice();
                                     String output = String.join(";", sortedMarket);
@@ -264,16 +262,33 @@ public class Server {
                                     String searchTerm = br.readLine();// reads the search term
                                     ArrayList<String> search = customer.searchUsingTerms(searchTerm);
                                     String output = String.join(";", search);
-                                    pw.write(output); // writes an arrayList containing all the products related to search term
-                                    // returns an empty arrayList if there are no matches
-                                    // each product will be separated by ';'. So split the string with ';' as the
-                                    // separator
+                                    if (search.isEmpty()){
+                                        pw.write("");
+                                        pw.println();
+                                        pw.flush();
+                                    } else {
+                                        pw.write(output); // writes an arrayList containing all the products related to search term
+                                        // returns an empty arrayList if there are no matches
+                                        // each product will be separated by ';'. So split the string with ';' as the
+                                        // separator
+                                        pw.println();
+                                        pw.flush();
+                                    }
                                 } else if (Integer.parseInt(option) == 6) {
                                     pw.write("okay"); // write empty string to follow protocol
                                     pw.println();
                                     pw.flush();
+                                    String product = "";
                                     String productNumber = br.readLine(); // reads product number whose information is needed
+                                    for (String line : databaseText) {
+                                        String[] lineArray = line.split(",");
+                                        if (Integer.parseInt(lineArray[0]) == Integer.parseInt(productNumber)) {
+                                            product = line;
+                                            break;
+                                        }
+                                    }
                                     String info = customer.viewProductInfo(Integer.parseInt(productNumber));
+
                                     pw.write(info); // writes the string containing the product to the client
                                     pw.println();
                                     pw.flush();
@@ -298,8 +313,8 @@ public class Server {
                                             pw.flush();
                                         }
                                     } else if (Integer.parseInt(next) == 2) {
-                                        customer.addToCart(Integer.parseInt(productNumber), customer);
-                                        pw.write("SUCCESS"); // writes success if the product was successfully added to cart
+                                        customer.addToCart(product, customer);
+                                        pw.write(""); // writes success if the product was successfully added to cart
                                         pw.println();
                                         pw.flush();
                                     }
