@@ -192,7 +192,7 @@ public class Client {
                         String[] next = new String[2];
                         next[0] = "Buy product";
                         next[1] = "Add to cart";
-                        String next1 = (String) JOptionPane.showInputDialog(null, info + "What would you like" +
+                        String next1 = (String) JOptionPane.showInputDialog(null, info + "What would you like " +
                                 "to do next?", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
                     } else if (option.equals("Sort the market by price")) {
 
@@ -214,13 +214,47 @@ public class Client {
 
                         }
 
-                        JOptionPane.showInputDialog(null, "" +
+                        String sorted = (String) JOptionPane.showInputDialog(null, "" +
                                         "Products sorted by price: (select one you may be interested in purchasing)",
                                 "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, display,
                                 display[0]);
 
+                        String productNumber;
 
-                        // TODO sort the market by price
+                        if (sorted == null) {
+                            return;
+                        } else {
+                            productNumber = sorted.substring(16, 23);
+                            System.out.println(productNumber);
+                        }
+
+                        pw.write("6");
+                        pw.println();
+                        pw.flush();
+
+                        String empty = br.readLine();
+
+                        String[] productOptionArray = sorted.split(",");
+                        pw.write(productNumber);
+                        pw.println();
+                        pw.flush();
+
+                        String info = br.readLine();
+                        String[] outArray = info.split(",");
+                        String out = "";
+                        String[] next = new String[2];
+                        next[0] = "Buy product";
+                        next[1] = "Add to cart";
+                        String next1 = (String) JOptionPane.showInputDialog(null, info + "What would you like " +
+                                "to do next?", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
+
+                        pw.write(sorted);
+                        pw.println();
+                        pw.flush();
+
+
+
+                        // TODO pick selected product and ask if they want to buy or not
                     }
                 }
             }
