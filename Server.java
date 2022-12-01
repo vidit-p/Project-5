@@ -128,7 +128,6 @@ public class Server {
                                 //pw.flush();
 
                                 //System.out.println("hello");
-                                pw1.println();
                                 pw1.println(role + "," + username + "," + passwd);
                                 pw1.flush();
                                 pw1.close();
