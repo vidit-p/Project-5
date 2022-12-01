@@ -214,8 +214,8 @@ public class Client {
 
                         }
 
-                        String productOption = (String) JOptionPane.showInputDialog(null, "" +
-                                        "Products sorted by price:",
+                        JOptionPane.showInputDialog(null, "" +
+                                        "Products sorted by price: (select one you may be interested in purchasing)",
                                 "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, display,
                                 display[0]);
 
