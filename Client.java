@@ -122,37 +122,62 @@ public class Client {
             }
 
             System.out.println("here");
-            pw.write(" ");
+            pw.write("");
             pw.println();
             pw.flush();
 
             String role = br.readLine();
+            //System.out.println("dfghj");
             System.out.println(role);
             if (role.equals("1")) {
-                String[] options = {"View all the products", "Sort the market by price", "sort the market by " +
-                        "quantity", "View shopping cart", "View purchase history", "Search for product using " +
-                        "search term", "View product info", "Exit"};
+                while (true) {
+                    String[] options = {"View all the products", "Sort the market by price", "sort the market by " +
+                            "quantity", "View shopping cart", "View purchase history", "Search for product using " +
+                            "search term", "View product info", "Exit"};
 
-                String option = (String) JOptionPane.showInputDialog(null, "Please select what " +
-                                "you would like to do", "Menu", JOptionPane.INFORMATION_MESSAGE, null,
-                        options, options[0]);
+                    String option = (String) JOptionPane.showInputDialog(null, "Please select what " +
+                                    "you would like to do", "Menu", JOptionPane.INFORMATION_MESSAGE, null,
+                            options, options[0]);
 
-                if (option.equals("View all the products")) {
-                    pw.write("7");
-                    pw.println();
-                    pw.flush();
+                    if (option == null) {
+                        return;
+                    }
 
-                    String products = br.readLine();
-                    String[] productArray = products.split(";");
-                    String productOption = (String) JOptionPane.showInputDialog(null, "" +
-                                    "Select the product you would like to see information about",
-                            "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, productArray,
-                            productArray[0]);
+                    if (option.equals("View all the products")) {
+                        pw.write("7");
+                        pw.println();
+                        pw.flush();
+
+                        String products = br.readLine();
+                        String[] productArray = products.split(";");
+                        for (String line : productArray) {
+
+                        }
+                        String productOption = (String) JOptionPane.showInputDialog(null, "" +
+                                        "Select the product you would like to see information about",
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE, null, productArray,
+                                productArray[0]);
+
+                        if (productOption == null) {
+                            return;
+                        }
+
+                        pw.write("6");
+                        pw.println();
+                        pw.flush();
+
+                        String empty = br.readLine();
+
+                        String[] productOptionArray = productOption.split(",");
+                        pw.write(productOptionArray[0]);
+                        pw.println();
+                        pw.flush();
+
+                        String info = br.readLine();
+                        String next = JOptionPane.showInputDialog(null, info, "Product info", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
-
-
             }
-
 
 
         } catch (Exception e) {
