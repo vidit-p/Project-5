@@ -6,7 +6,7 @@ public class Server {
     public static void main(String[] args) {
         while (true) {
             try {
-                ServerSocket serverSocket = new ServerSocket(4243);
+                ServerSocket serverSocket = new ServerSocket(4244);
                 Socket socket = serverSocket.accept();
                 InputStreamReader isr = new InputStreamReader(socket.getInputStream());
                 BufferedReader br = new BufferedReader(isr);
@@ -14,8 +14,11 @@ public class Server {
 
                 File f = new File("database.txt");
                 File f1 = new File("accounts.txt");
+                FileOutputStream fos = new FileOutputStream(f1, true);
+                PrintWriter pw1 = new PrintWriter(fos);
                 FileReader fr1 = new FileReader(f1);
                 BufferedReader bfr1 = new BufferedReader(fr1);
+
 
                 FileReader fr = new FileReader(f);
                 BufferedReader bfr = new BufferedReader(fr);
@@ -23,8 +26,6 @@ public class Server {
                 ArrayList<String> databaseText = new ArrayList<String>();
                 ArrayList<String> loginText = new ArrayList<String>();
 
-                FileOutputStream fos = new FileOutputStream("accounts.txt");
-                PrintWriter pw1 = new PrintWriter(fos);
 
                 while (text != null) {
                     databaseText.add(text);
@@ -46,16 +47,17 @@ public class Server {
                     try {
                         while (true) {
                             String account = br.readLine();// input if the account exists or not
-                            pw.write(""); // write an empty string to follow protocol
+                            pw.write(" "); // write an empty string to follow protocol
                             pw.println();
                             pw.flush();
                             String user = "";
                             if (account.equals("1")) {
                                 while (exist == false) {
                                     username = br.readLine(); // read username
+                                    System.out.println(loginText.toString());
                                     for (String line : loginText) {
                                         String[] lineArray = line.split(",");
-                                        if (lineArray[1].equals(user)) {
+                                        if (lineArray[1].equals(username)) {
                                             role = lineArray[0];
                                             exist = true;
                                         }
@@ -75,13 +77,15 @@ public class Server {
                                     password = br.readLine(); // read password
                                     for (String line : loginText) {
                                         String[] lineArray = line.split(",");
-                                        if (lineArray[1].equals(user) && lineArray[2].equals(password)) {
+                                        if (lineArray[1].equals(username) && lineArray[2].equals(password)) {
                                             correct = true;
                                         }
                                     }
 
                                     if (correct == true) {
                                         pw.write("true"); // writes true if the password is correct
+                                        pw.println();
+                                        pw.flush();
                                     } else {
                                         pw.write("false"); // writes false if the password is incorrect
                                     }
@@ -90,6 +94,7 @@ public class Server {
                                 }
                                 break;
                             } else {
+                                System.out.println("here");
                                 role = br.readLine();// reads if the new account is seller
                                 // account or customer account
                                 // 1 for customer and 2 for seller
@@ -98,46 +103,49 @@ public class Server {
                                 pw.println();
                                 pw.flush();
                                 boolean right = false;
-                                while (right == true) {
+                                do {
                                     username = br.readLine(); // reads the username for new account
-                                    password = "";
+                                    System.out.println(username);
                                     for (String line : loginText) {
                                         String[] lineArray = line.split(",");
                                         if (lineArray[1].equals(username)) {
-                                            pw.write("false"); //write false if the username already exists
-                                            pw.println();
-                                            pw.flush();
+
                                         } else {
                                             right = true;
-                                            pw.write("true"); //write true if the username is valid
-                                            pw.println();
-                                            pw.flush();
+                                            break;
                                         }
-                                        password = br.readLine(); // read password for the new account
-                                        pw.write(""); // write empty string to follow protocol
-                                        pw.println();
-                                        pw.flush();
                                     }
-                                    pw1.println(role + "," + username + "," + password);
-                                }
-                            }// after creating the account, the user goes back to login page
+                                    pw.println(String.valueOf(right));
+                                    pw.println();
+                                    pw.flush();
+                                } while (right == false);
+                                System.out.println("hi");
+
+                                String passwd = br.readLine(); // read password for the new account
+                                System.out.println("new" + password);
+                                //pw.write(""); // write empty string to follow protocol
+                                //pw.println();
+                                //pw.flush();
+
+                                //System.out.println("hello");
+                                pw1.println();
+                                pw1.println(role + "," + username + "," + passwd);
+                                pw1.flush();
+                                pw1.close();
+                            }
+                            break;
                         }
                         if (role.equals("1")) {
                             Customer customer = new Customer (username, password);
                             customer.initialise();
                             String str = br.readLine(); // read an empty string to follow protocol
+
+                            pw.write("1");
+                            pw.println();
+                            pw.flush();
+
                             while (true) {
                                 //TODO: resolve the view product issue
-                                ArrayList<String> productList = customer.viewOverallMarket();
-                                String out = String.join(";", productList);
-                                pw.write(out); // writes an array list converted to string to the client
-                                // each product will be separated by ';'. So split the string with ';' as the
-                                // separator
-                                pw.println();
-                                pw.flush();
-                                //containing all the products in the market
-                                // each string contains product number, product name, store name and price
-                                // all the values are separated by a coma
 
                                 String option = br.readLine();// read what the customer wants to do
                                 // 1 to sort the market by price
@@ -146,7 +154,8 @@ public class Server {
                                 // 4 to view purchase history
                                 // 5 to search for products using a search term
                                 // 6 to view product info
-                                // 7 to exit
+                                // 7 to view the marketplace without sorting
+                                // 8 to exit
                                 if (Integer.parseInt(option) == 1) {
                                     ArrayList<String> sortedMarket = customer.sortByPrice();
                                     String output = String.join(";", sortedMarket);
@@ -158,6 +167,17 @@ public class Server {
                                     //refer to sortByPrice method in Customer class
                                     pw.println();
                                     pw.flush();
+                                } else if (Integer.parseInt(option) == 7) {
+                                    ArrayList<String> productList = customer.viewOverallMarket();
+                                    String out = String.join(";", productList);
+                                    pw.write(out); // writes an array list converted to string to the client
+                                    // each product will be separated by ';'. So split the string with ';' as the
+                                    // separator
+                                    pw.println();
+                                    pw.flush();
+                                    //containing all the products in the market
+                                    // each string contains product number, product name, store name and price
+                                    // all the values are separated by a coma
                                 } else if (Integer.parseInt(option) == 2) {
                                     ArrayList<String> sortedMarket = customer.sortByQuantity();
                                     String output = String.join(";", sortedMarket);
