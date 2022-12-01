@@ -54,7 +54,6 @@ public class Server {
                             if (account.equals("1")) {
                                 while (exist == false) {
                                     username = br.readLine(); // read username
-                                    System.out.println(loginText.toString());
                                     for (String line : loginText) {
                                         String[] lineArray = line.split(",");
                                         if (lineArray[1].equals(username)) {
@@ -92,9 +91,7 @@ public class Server {
                                     pw.println();
                                     pw.flush();
                                 }
-                                break;
                             } else {
-                                System.out.println("here");
                                 role = br.readLine();// reads if the new account is seller
                                 // account or customer account
                                 // 1 for customer and 2 for seller
@@ -105,7 +102,6 @@ public class Server {
                                 boolean right = false;
                                 do {
                                     username = br.readLine(); // reads the username for new account
-                                    System.out.println(username);
                                     for (String line : loginText) {
                                         String[] lineArray = line.split(",");
                                         if (lineArray[1].equals(username)) {
@@ -119,15 +115,9 @@ public class Server {
                                     pw.println();
                                     pw.flush();
                                 } while (right == false);
-                                System.out.println("hi");
 
                                 String passwd = br.readLine(); // read password for the new account
-                                System.out.println("new" + password);
-                                //pw.write(""); // write empty string to follow protocol
-                                //pw.println();
-                                //pw.flush();
 
-                                //System.out.println("hello");
                                 pw1.println(role + "," + username + "," + passwd);
                                 pw1.flush();
                                 pw1.close();
@@ -139,10 +129,12 @@ public class Server {
                             customer.initialise();
                             String str = br.readLine(); // read an empty string to follow protocol
 
+                            System.out.println("hi");
+
                             pw.write("1");
                             pw.println();
                             pw.flush();
-
+                            System.out.println("hello");
                             while (true) {
                                 //TODO: resolve the view product issue
 
