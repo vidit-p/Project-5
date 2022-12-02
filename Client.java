@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.*;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -151,9 +153,9 @@ public class Client {
                         int index = 0;
                         for (String line : productArray) {
                             String[] lineArray = line.split(",");
-                            display[index] = String.format("Product Number: %s, Product Name: %s, Store name: %s" +
+                            display[index] = (String.format("Product Number: %s, Product Name: %s, Store name: %s" +
                                             ", Price: $%s", lineArray[0],
-                                    lineArray[1], lineArray[2], lineArray[3]);
+                                    lineArray[1], lineArray[2], lineArray[3]));
                             index++;
 
                         }
@@ -167,7 +169,7 @@ public class Client {
                         if (productOption == null) {
                             return;
                         } else {
-                            productNumber = productOption.substring(16, 23);
+                            productNumber = productOption.substring(16, 22);
                         }
 
                         pw.write("6");
@@ -260,7 +262,7 @@ public class Client {
                         if (sorted == null) {
                             return;
                         } else {
-                            productNumber = sorted.substring(16, 23);
+                            productNumber = sorted.substring(16, 22);
                         }
 
                         pw.write("6");
@@ -354,7 +356,7 @@ public class Client {
                         if (productOption == null) {
                             return;
                         } else {
-                            productNumber = productOption.substring(16, 23);
+                            productNumber = productOption.substring(16, 22);
                         }
 
                         pw.write("6");
@@ -465,16 +467,19 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, "Cart bought succcessfully!",
                                         "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
 
-                            } else if (next3.equals("Delete a product from cart")) {
+                                br.readLine();
 
+                            } else if (next3.equals("Delete a product from cart")) {
                                 String numberrr = (String) JOptionPane.showInputDialog(null, "Which product would you like to delete?",
                                         "Shopping Cart", JOptionPane.QUESTION_MESSAGE, null, out, out[0]);
 
-                                String numberr = numberrr.substring(16, 23);
+                                String numberr = numberrr.substring(16, 22);
 
                                 pw.write("3");
                                 pw.println();
                                 pw.flush();
+
+                                br.readLine();
 
                                 pw.write(numberr);
                                 pw.println();
@@ -535,7 +540,7 @@ public class Client {
                             if (productInfo == null) {
                                 return;
                             } else {
-                                productNumber = productInfo.substring(16, 23);
+                                productNumber = productInfo.substring(16, 22);
                             }
 
                             pw.write("6");
@@ -604,7 +609,6 @@ public class Client {
 
                         }
                     } else if (option.equals("View purchase history")) {
-                        System.out.println("here");
                         pw.write("4");
                         pw.println();
                         pw.flush();
@@ -628,7 +632,6 @@ public class Client {
                     }
                 }
             } else if (role.equals("2")) {
-                System.out.println("here");
                 while (true) {
                     String[] options = {"Add new product to the market", "Remove a product from the market",
                             "Edit existing product", "View information about your store", "Import CSV file of products",
