@@ -330,14 +330,19 @@ public class Server {
                                 }
                             }
                         } else {
+                            String empty = br.readLine(); // read an empty string to follow protocol
+                            pw.write("2");
+                            pw.println();
+                            pw.flush();
+
                             while (true) {
                                 Seller seller = new Seller(username, password);
                                 seller.initialise();
-                                pw.write("2");
-                                pw.println();
-                                pw.flush();
+
                                 String option = br.readLine(); // reads what the seller wants to do
                                 // 1. If the seller wants to add a new product
+                                // 2. If the seller wants to delete a product
+                                // 3. Edit existing product
 
                                 if (option.equals("1")) {
                                     pw.write(""); //writes an empty string to follow protocol
@@ -348,9 +353,12 @@ public class Server {
                                     // the string should be in the following format: storeName,productName,sellerName,
                                     // description,quantity,price
 
+
                                     String[] productArray = product.split(",");
                                     int add = seller.addProduct(productArray[0], productArray[1], productArray[2], productArray[3],
                                             Integer.parseInt(productArray[4]), Double.parseDouble(productArray[5]));
+
+                                    System.out.println(add);
 
                                     if (add == 1) {
                                         pw.write("ERROR"); // writes error if the store is not owned by the seller
@@ -361,6 +369,31 @@ public class Server {
                                         pw.println();
                                         pw.flush();
                                     }
+                                } else if (option.equals("2")) {
+                                    ArrayList<String> sellerProducts = seller.sellerProduct();
+                                    System.out.println(sellerProducts.toString());
+                                    if (sellerProducts.isEmpty() || sellerProducts == null) {
+                                        pw.write("1"); // writes 1 if there are no products associated with
+                                        // the seller
+                                        pw.println();
+                                        pw.flush();
+                                    } else {
+                                        String outputString = String.join(";", sellerProducts);
+                                        pw.write(outputString); // writes an arrayList in the form of a string with
+                                        // each product separated by ";". So split the string using ";".
+                                        pw.println();
+                                        pw.flush();
+
+
+                                        String productNumber = br.readLine();
+                                        System.out.println(productNumber);
+                                        int delete = seller.deleteProduct(Integer.parseInt(productNumber));
+                                        pw.write(delete); // writes 0 if the deletion is successful
+                                        // else, writes either 1 or 2. Refer to deleteProduct method in seller class
+                                        pw.println();
+                                        pw.flush();
+                                    }
+
                                 }
                             }
 
