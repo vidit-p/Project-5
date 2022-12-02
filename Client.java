@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.*;
 
@@ -128,6 +129,7 @@ public class Client {
             pw.flush();
 
             String role = br.readLine();
+            System.out.println("role: " + role);
             if (role.equals("1")) {
                 while (true) {
                     String[] options = {"View all the products", "Sort the market by price", "sort the market by " +
@@ -666,17 +668,35 @@ public class Client {
                         if (description == null) {
                             return;
                         }
-
-                        String quantity = JOptionPane.showInputDialog(null, "Enter the available quantity for the product"
-                                , "Add product", JOptionPane.QUESTION_MESSAGE);
-                        if (quantity == null) {
-                            return;
+                        String quantity;
+                        while (true) {
+                            try {
+                                quantity = JOptionPane.showInputDialog(null, "Enter the available quantity for the product"
+                                        , "Add product", JOptionPane.QUESTION_MESSAGE);
+                                if (quantity == null) {
+                                    return;
+                                }
+                                Integer.parseInt(quantity);
+                                break;
+                            } catch (NumberFormatException e) {
+                                JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
+                                        "ease enter again", "Error",JOptionPane.ERROR_MESSAGE);
+                            }
                         }
-
-                        String price = JOptionPane.showInputDialog(null, "Enter the price of a single product"
-                                , "Add product", JOptionPane.QUESTION_MESSAGE);
-                        if (price == null) {
-                            return;
+                        String price;
+                        while (true) {
+                            try {
+                                price = JOptionPane.showInputDialog(null, "Enter the price of a single product"
+                                        , "Add product", JOptionPane.QUESTION_MESSAGE);
+                                if (price == null) {
+                                    return;
+                                }
+                                Integer.parseInt(price);
+                                break;
+                            } catch (NumberFormatException e) {
+                                JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
+                                        "ease enter again", "Error",JOptionPane.ERROR_MESSAGE);
+                            }
                         }
 
                         String out = storeName + "," + productName + "," + username + "," + description + "," +
@@ -693,6 +713,44 @@ public class Client {
                             JOptionPane.showMessageDialog(null, "Product successfully added to the " +
                                     "marketplace!", "Success", JOptionPane.INFORMATION_MESSAGE);
                         }
+                    } else if (option.equals("Remove a product from the market")) {
+                        pw.write("2");
+                        pw.println();
+                        pw.flush();
+
+                        String products = br.readLine();
+                        if (products.equals("1")) {
+                            JOptionPane.showMessageDialog(null, "ERROR! There are no products" +
+                                    "associated with you as a seller", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            String[] productArray = products.split(";");
+
+                            String[] out = new String[productArray.length];
+                            int index = 0;
+                            for (String line : productArray) {
+                                String[] lineArray = line.split(",");
+                                out[index] = String.format("Product Number: %s, Product name: %s, Store name: %s",
+                                        lineArray[0], lineArray[1], lineArray[2]);
+                                index++;
+                            }
+                            String deleteProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
+                                            "would you like to delete", "Remove Product", JOptionPane.QUESTION_MESSAGE,
+                                    null, out, out[0]);
+
+                            String productNumber = deleteProduct.substring(16, 22);
+
+                            pw.write(productNumber);
+                            pw.println();
+                            pw.flush();
+
+                            String success = br.readLine();
+                            JOptionPane.showMessageDialog(null, "Success: The product was successfully" +
+                                    "deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+
+                        }
+                    } else if (option.equals("Edit existing product")) {
+
                     }
                 }
             }
