@@ -149,6 +149,7 @@ public class Server {
                                 // 6 to view product info -
                                 // 7 to view the marketplace without sorting -
                                 // 8 to exit -
+                                System.out.println(option);
                                 if (Integer.parseInt(option) == 1) {
                                     ArrayList<String> sortedMarket = customer.sortByPrice();
                                     String output = String.join(";", sortedMarket);
@@ -246,15 +247,25 @@ public class Server {
                                         } while (!flag);
                                     }
                                 } else if (Integer.parseInt(option) == 4) {
+                                    System.out.println(customer.getEmail());
                                     ArrayList<String> history = customer.viewHistory();
-                                    String output = String.join(";", history);
-                                    pw.write(output); // writes an arraylist as a string to the client containing the purchase history
-                                    // each string contains the product bought by the customer
-                                    // each product will be separated by ';'. So split the string with ';' as the
-                                    // separator
-                                    // returns empty arrayList if no products are bought till now
-                                    pw.println();
-                                    pw.flush();
+                                    System.out.println(history.toString());
+                                    if (history.isEmpty() || history == null) {
+                                        pw.write("");
+                                        pw.println();
+                                        pw.flush();
+                                    } else {
+                                        String output = String.join(";", history);
+                                        System.out.println(output);
+
+                                        pw.write(output); // writes an arraylist as a string to the client containing the purchase history
+                                        // each string contains the product bought by the customer
+                                        // each product will be separated by ';'. So split the string with ';' as the
+                                        // separator
+                                        // returns empty arrayList if no products are bought till now
+                                        pw.println();
+                                        pw.flush();
+                                    }
                                 } else if (Integer.parseInt(option) == 5) {
                                     pw.write("okay");// write empty string to follow protocol
                                     pw.println();
@@ -326,10 +337,14 @@ public class Server {
                             while (true) {
                                 Seller seller = new Seller(username, password);
                                 seller.initialise();
+                                pw.write("2");
+                                pw.println();
+                                pw.flush();
                                 String option = br.readLine(); // reads what the seller wants to do
                                 // 1. If the seller wants to add a new product
+                                System.out.println(option);
 
-                                if (Integer.parseInt(option) == 1) {
+                                if (option.equals("1")) {
                                     pw.write(""); //writes an empty string to follow protocol
                                     pw.println();
                                     pw.flush();
