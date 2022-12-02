@@ -218,7 +218,7 @@ public class Customer {
 
             String text = br.readLine();
             while (text != null) {
-                String[] textArray = text.split(";");
+                String[] textArray = text.split(",");
                 if (email.equals(textArray[0])) {
                     history.add(text);
                 }
