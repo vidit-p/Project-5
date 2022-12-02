@@ -118,7 +118,7 @@ public class Customer {
             if (Integer.parseInt(productArray[0]) == productNumber) {
                 out = String.format("Product description: %s \t Quantity available: %s",
                         productArray[3], productArray[4]);
-                return product;
+                return out;
             }
         }
         return out;
@@ -249,7 +249,7 @@ public class Customer {
         return shoppingCart;
     }
 
-    public void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {;
+    public void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {
         try {
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -263,24 +263,11 @@ public class Customer {
         }
     }
 
-    public void addToCart(int productNumber, Customer customer) {
+    public void addToCart(String product, Customer customer) {
         ArrayList<String> shoppingCart = new ArrayList<String>();
         shoppingCart = readCurrentShoppingCart(customer);
-        File f = new File("database.txt");
-        try {
-            FileReader fr = new FileReader(f);
-            BufferedReader br = new BufferedReader(fr);
-            String text = br.readLine();
-            while (text != null) {
-                String[] textArray = text.split(",");
-                if (Integer.parseInt(textArray[0]) == productNumber) {
-                    shoppingCart.add(text);
-                }
-            }
-            writeCurrentShoppingCart(shoppingCart, customer);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        shoppingCart.add(product);
+        writeCurrentShoppingCart(shoppingCart, customer);
     }
 
     public void clearCart(Customer customer) throws IOException {
