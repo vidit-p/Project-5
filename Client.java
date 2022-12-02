@@ -562,18 +562,38 @@ public class Client {
                         cartOptions[1] = "Delete a product from cart";
                         cartOptions[2] = "Return to menu";
 
-                            JOptionPane.showInputDialog(null, "Here are all the items currently in your shopping cart.", "Shopping Cart", JOptionPane.QUESTION_MESSAGE, null, out, out[0]);
+                            JOptionPane.showInputDialog(null, "Here are all the items currently in your shopping cart.",
+                                    "Shopping Cart", JOptionPane.QUESTION_MESSAGE, null, out, out[0]);
 
-                            String next3 = (String) JOptionPane.showInputDialog(null, "What would you like to do?", "Shopping Cart", JOptionPane.QUESTION_MESSAGE, null, cartOptions, cartOptions[0]);
+                            String next3 = (String) JOptionPane.showInputDialog(null,
+                                    "What would you like to do?", "Shopping Cart", JOptionPane.QUESTION_MESSAGE,
+                                    null, cartOptions, cartOptions[0]);
 
                             if (next3.equals("Purchase entire cart")) {
                                 pw.write("2");
                                 pw.println();
                                 pw.flush();
 
-                                JOptionPane.showMessageDialog(null, "Cart bought succcessfully!", "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Cart bought succcessfully!",
+                                        "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
 
                             } else if (next3.equals("Delete a product from cart")) {
+
+                                String numberrr = (String) JOptionPane.showInputDialog(null, "Which product would you like to delete?",
+                                        "Shopping Cart", JOptionPane.QUESTION_MESSAGE, null, out, out[0]);
+
+                                String numberr = numberrr.substring(16, 23);
+
+                                pw.write("3");
+                                pw.println();
+                                pw.flush();
+
+                                pw.write(numberr);
+                                pw.println();
+                                pw.flush();
+
+                                JOptionPane.showMessageDialog(null, "Product deleted from cart.",
+                                            "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
 
                             } else if (next3.equals("Return to menu")) {
                                 continue;
