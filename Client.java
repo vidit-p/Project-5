@@ -532,6 +532,60 @@ public class Client {
                             }
 
                         }
+                    } else if (option.equals("View shopping cart")) {
+                        pw.write("3");
+                        pw.println();
+                        pw.flush();
+
+                        String empty = br.readLine();
+
+                        if (empty.isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Shopping cart is empty.", "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+
+                        String[] productoss = empty.split(";");
+
+                        String[] out = new String[productoss.length];
+                        int index = 0;
+
+                        for (String line : productoss) {
+                            String[] lineArray = line.split(",");
+                            String display = String.format("Product Number: %s, Product Name: %s, Store Name: %s, " +
+                                            "Price: $%s",
+                                    lineArray[0], lineArray[1], lineArray[2], lineArray[5]);
+                            out[index] = display;
+                            index++;
+                        }
+
+                        String[] cartOptions = new String[3];
+                        cartOptions[0] = "Purchase entire cart";
+                        cartOptions[1] = "Delete a product from cart";
+                        cartOptions[2] = "Return to menu";
+
+                            JOptionPane.showInputDialog(null, "Here are all the items currently in your shopping cart.", "Shopping Cart", JOptionPane.QUESTION_MESSAGE, null, out, out[0]);
+
+                            String next3 = (String) JOptionPane.showInputDialog(null, "What would you like to do?", "Shopping Cart", JOptionPane.QUESTION_MESSAGE, null, cartOptions, cartOptions[0]);
+
+                            if (next3.equals("Purchase entire cart")) {
+                                pw.write("2");
+                                pw.println();
+                                pw.flush();
+
+                                JOptionPane.showMessageDialog(null, "Cart bought succcessfully!", "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
+
+                            } else if (next3.equals("Delete a product from cart")) {
+
+                            } else if (next3.equals("Return to menu")) {
+                                continue;
+                            } else {
+                                return;
+                            }
+                        }
+
+
+                    } else if (option.equals("Exit")) {
+                        JOptionPane.showMessageDialog(null, "Thank you for using the Online Marketplace!", "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                        return;
                     }
                 }
             }
