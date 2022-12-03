@@ -142,8 +142,8 @@ public class Client implements Runnable{
                             "quantity", "View shopping cart", "View purchase history",
                             "Search for product using search term", "Exit"};
 
-                    String option = (String) JOptionPane.showInputDialog(null, 
-                                    "What would you like to do?", "Menu", JOptionPane.INFORMATION_MESSAGE, null,
+                    String option = (String) JOptionPane.showInputDialog(null,
+                            "What would you like to do?", "Menu", JOptionPane.INFORMATION_MESSAGE, null,
                             options, options[0]);
 
                     if (option == null) {
@@ -733,7 +733,7 @@ public class Client implements Runnable{
                                 if (price == null) {
                                     return;
                                 }
-                                Integer.parseInt(price);
+                                Double.parseDouble(price);
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
@@ -828,7 +828,7 @@ public class Client implements Runnable{
                                 String name = editProductArray[1].substring(15);
                                 String description = editProductArray[3].substring(14);
                                 String quantity = editProductArray[4].substring(11);
-                                String price = editProductArray[5].substring(8);
+                                String price = editProductArray[5].substring(9);
 
                                 String[] editOptions = {"Product Name", "Product Description", "Quantity", "Price"};
                                 String edit = (String) JOptionPane.showInputDialog(null, "Which aspect of the product would you like " +
