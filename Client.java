@@ -189,7 +189,7 @@ public class Client {
                         String[] next = new String[2];
                         next[0] = "Buy product";
                         next[1] = "Add to cart";
-                        String next1 = (String) JOptionPane.showInputDialog(null, info + "What would you like" +
+                        String next1 = (String) JOptionPane.showInputDialog(null, info + " .What would you like" +
                                 "to do next", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
 
                         if (next1 == null) {
@@ -661,12 +661,8 @@ public class Client {
                                         productArray[6]);
                             }
                             JOptionPane.showMessageDialog(null, out, "Purchase History",
-                                    JOptionPane.INFORMATION_MESSAGE);
+                                    JOptionPane.INFORMATION_MESSAGE) ;
                         }
-                    } else if (option.equals("Exit")) {
-                        JOptionPane.showMessageDialog(null, "Thank you for using the Online Marketplace!",
-                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
-                        return;
                     }
                 }
             } else if (role.equals("2")) {
@@ -716,7 +712,7 @@ public class Client {
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
-                                        "ease enter again", "Error", JOptionPane.ERROR_MESSAGE);
+                                        "ease enter again", "Error",JOptionPane.ERROR_MESSAGE);
                             }
                         }
                         String price;
@@ -731,7 +727,7 @@ public class Client {
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
-                                        "ease enter again", "Error", JOptionPane.ERROR_MESSAGE);
+                                        "ease enter again", "Error",JOptionPane.ERROR_MESSAGE);
                             }
                         }
 
@@ -769,7 +765,7 @@ public class Client {
                                         lineArray[0], lineArray[1], lineArray[2]);
                                 index++;
                             }
-                            String deleteProduct = (String) JOptionPane.showInputDialog(null, "Which product" +
+                            String deleteProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
                                             "would you like to delete", "Remove Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
                             if (deleteProduct == null) {
@@ -810,7 +806,7 @@ public class Client {
                                         lineArray[5]);
                                 index++;
                             }
-                            String editProduct = (String) JOptionPane.showInputDialog(null, "Which product" +
+                            String editProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
                                             "would you like to edit", "Edit Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
 
@@ -874,7 +870,7 @@ public class Client {
                                         }
                                     }
                                 }
-                                String write = productNumber + "," + name + "," + description + "," + quantity + "," + price;
+                                String write  = productNumber + "," + name + "," + description + "," + quantity + "," + price;
 
                                 pw.write(write);
                                 pw.println();
@@ -921,26 +917,31 @@ public class Client {
                                 pw.flush();
 
                                 String show = br.readLine();
-                                String[] showArray = show.split(";");
-                                String[] out = new String[showArray.length];
-                                int index = 0;
-                                for (String text : showArray) {
-                                    System.out.println(text);
-                                    if (!text.contains("revenue")) {
-                                        String[] textArray = text.split(",");
-                                        out[index] = String.format("Product name: %s \t Store name: %s \t price: %s \t customer: %s\n", textArray[2],
-                                                textArray[3], textArray[6], textArray[0]);
-                                        index++;
-                                    } else {
-                                        out[showArray.length - 1] = text;
+                                if (show.equals("1")) {
+                                    JOptionPane.showMessageDialog(null, "Error! No activity has happened " +
+                                            "in this store", "Error", JOptionPane.ERROR_MESSAGE);
+                                } else {
+                                    String[] showArray = show.split(";");
+                                    String[] out = new String[showArray.length];
+                                    int index = 0;
+                                    for (String text : showArray) {
+                                        System.out.println(text);
+                                        if (!text.contains("revenue")) {
+                                            String[] textArray = text.split(",");
+                                            out[index] = String.format("Product name: %s \t Store name: %s \t price: %s \t customer: %s\n", textArray[2],
+                                                    textArray[3], textArray[6], textArray[0]);
+                                            index++;
+                                        } else {
+                                            out[showArray.length - 1] = text;
+                                        }
                                     }
+                                    String output = "Store information:\n";
+                                    for (String line : out) {
+                                        output = output + "\n" + line;
+                                    }
+                                    JOptionPane.showMessageDialog(null, output, "Store information",
+                                            JOptionPane.INFORMATION_MESSAGE);
                                 }
-                                String output = "Store information:\n";
-                                for (String line : out) {
-                                    output = output + "\n" + line;
-                                }
-                                JOptionPane.showMessageDialog(null, output, "Store information",
-                                        JOptionPane.INFORMATION_MESSAGE);
                             }
                         }
 
@@ -972,7 +973,6 @@ public class Client {
                             }
                         }
 
-<<<<<<< HEAD
                     } else if (option.equals("View a customer's shopping cart")) {
                         pw.write("6");
                         pw.println();
@@ -1009,12 +1009,6 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, out, "Customer Cart", JOptionPane.INFORMATION_MESSAGE);
                             }
                         }
-=======
-                    } else if (option.equals("Exit")) {
-                        JOptionPane.showMessageDialog(null, "Thank you for using the Online Marketplace!",
-                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
-                        return;
->>>>>>> da74a52b300d1cefbf36b9eb0862411df6a167cc
                     }
                 }
             }
