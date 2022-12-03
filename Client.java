@@ -201,6 +201,9 @@ public class Client {
 
                             empty = br.readLine();
 
+                            int intQuantity = -1;
+
+                            boolean quantityBad = true;
                             do {
                                 String quantity = JOptionPane.showInputDialog(null, "Enter the quantity",
                                         "Quantity", JOptionPane.QUESTION_MESSAGE);
@@ -208,16 +211,23 @@ public class Client {
                                     return;
                                 }
                                 try {
-                                    int intQuantity = Integer.parseInt(quantity);
-                                    pw.write(quantity);
-                                    pw.println();
-                                    pw.flush();
-                                    break;
+                                    intQuantity = Integer.parseInt(quantity);
+                                    if (intQuantity < 1) {
+                                        JOptionPane.showMessageDialog(null, "Error, please enter a positive number!",
+                                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                                        quantityBad = false;
+                                    } else {
+                                        pw.write(quantity);
+                                        pw.println();
+                                        pw.flush();
+                                        quantityBad = true;
+                                    }
                                 } catch (NumberFormatException e) {
                                     JOptionPane.showMessageDialog(null, "ERROR! Invalid input. Please try " +
                                             "again", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                    quantityBad = false;
                                 }
-                            } while (true);
+                            } while (!quantityBad);
 
                             String buy = br.readLine();
                             if (buy.equals("SUCCESS")) {
@@ -296,6 +306,9 @@ public class Client {
 
                             empty = br.readLine();
 
+                            int intQuantity = -1;
+
+                            boolean quantityBad = true;
                             do {
                                 String quantity = JOptionPane.showInputDialog(null, "Enter the quantity",
                                         "Quantity", JOptionPane.QUESTION_MESSAGE);
@@ -303,16 +316,24 @@ public class Client {
                                     return;
                                 }
                                 try {
-                                    int intQuantity = Integer.parseInt(quantity);
-                                    pw.write(quantity);
-                                    pw.println();
-                                    pw.flush();
-                                    break;
+                                    intQuantity = Integer.parseInt(quantity);
+                                    if (intQuantity < 1) {
+                                        JOptionPane.showMessageDialog(null, "Error, please enter a positive number!",
+                                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                                        quantityBad = false;
+                                    } else {
+                                        pw.write(quantity);
+                                        pw.println();
+                                        pw.flush();
+                                        quantityBad = true;
+                                    }
                                 } catch (NumberFormatException e) {
                                     JOptionPane.showMessageDialog(null, "ERROR! Invalid input. Please try " +
                                             "again", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                    quantityBad = false;
                                 }
-                            } while (true);
+
+                            } while (!quantityBad);
 
                             String buy = br.readLine();
                             if (buy.equals("SUCCESS")) {
@@ -390,6 +411,9 @@ public class Client {
 
                             empty = br.readLine();
 
+                            int intQuantity = -1;
+
+                            boolean quantityBad = true;
                             do {
                                 String quantity = JOptionPane.showInputDialog(null, "Enter the quantity",
                                         "Quantity", JOptionPane.QUESTION_MESSAGE);
@@ -397,16 +421,24 @@ public class Client {
                                     return;
                                 }
                                 try {
-                                    int intQuantity = Integer.parseInt(quantity);
-                                    pw.write(quantity);
-                                    pw.println();
-                                    pw.flush();
-                                    break;
+                                    intQuantity = Integer.parseInt(quantity);
+                                    if (intQuantity < 1) {
+                                        JOptionPane.showMessageDialog(null, "Error, please enter a positive number!",
+                                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                                        quantityBad = false;
+                                    } else {
+                                        pw.write(quantity);
+                                        pw.println();
+                                        pw.flush();
+                                        quantityBad = true;
+                                    }
                                 } catch (NumberFormatException e) {
                                     JOptionPane.showMessageDialog(null, "ERROR! Invalid input. Please try " +
                                             "again", "ERROR", JOptionPane.ERROR_MESSAGE);
+                                    quantityBad = false;
                                 }
-                            } while (true);
+
+                            } while (!quantityBad);
 
                             String buy = br.readLine();
                             if (buy.equals("SUCCESS")) {
