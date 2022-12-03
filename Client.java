@@ -89,10 +89,12 @@ public class Client {
                         pw.write("2");
                         pw.println();
                         pw.flush();
-                    } else {
+                    } else if (accountType.equals("Buyer")){
                         pw.write("1");
                         pw.println();
                         pw.flush();
+                    } else {
+                        return;
                     }
                     empty = br.readLine();
                     while (true) {
@@ -120,6 +122,8 @@ public class Client {
                     }
                     JOptionPane.showMessageDialog(null, "Account successfully created! Restart the " +
                             "application to login", "Success!", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                } else {
                     return;
                 }
             }
@@ -631,6 +635,10 @@ public class Client {
                             JOptionPane.showMessageDialog(null, out, "Purchase History",
                                     JOptionPane.INFORMATION_MESSAGE) ;
                         }
+                    } else if (option.equals("Exit")) {
+                        JOptionPane.showMessageDialog(null, "Thank you for using the Online Marketplace!",
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                        return;
                     }
                 }
             } else if (role.equals("2")) {
@@ -850,10 +858,13 @@ public class Client {
                                         JOptionPane.INFORMATION_MESSAGE);
                             }
                         }
+                    } else if (option.equals("Exit")) {
+                        JOptionPane.showMessageDialog(null, "Thank you for using the Online Marketplace!",
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                        return;
                     }
                 }
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();
