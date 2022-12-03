@@ -639,7 +639,7 @@ public class Client {
                             "Edit existing product", "View information about your store", "Import CSV file of products",
                             "View a customer's shopping cart", "Exit"};
 
-                    String option = (String) JOptionPane.showInputDialog(null, "What would you like to do:",
+                    String option = (String) JOptionPane.showInputDialog(null, "What would you like to do?",
                             "Menu", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
                     if (option == null) {
@@ -652,7 +652,7 @@ public class Client {
                         String empty = br.readLine();
 
                         String storeName = JOptionPane.showInputDialog(null, "Enter the name of the" +
-                                "store to which you would like to add the product", "Add product", JOptionPane.QUESTION_MESSAGE);
+                                " store to which you would like to add the product", "Add product", JOptionPane.QUESTION_MESSAGE);
                         if (storeName == null) {
                             return;
                         }
@@ -691,7 +691,7 @@ public class Client {
                                 if (price == null) {
                                     return;
                                 }
-                                Integer.parseInt(price);
+                                Double.parseDouble(price);
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
@@ -721,7 +721,7 @@ public class Client {
                         String products = br.readLine();
                         if (products.equals("1")) {
                             JOptionPane.showMessageDialog(null, "ERROR! There are no products" +
-                                    "associated with you as a seller", "Error", JOptionPane.ERROR_MESSAGE);
+                                    " associated with you as a seller", "Error", JOptionPane.ERROR_MESSAGE);
                         } else {
                             String[] productArray = products.split(";");
 
@@ -733,7 +733,7 @@ public class Client {
                                         lineArray[0], lineArray[1], lineArray[2]);
                                 index++;
                             }
-                            String deleteProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
+                            String deleteProduct = (String) JOptionPane.showInputDialog(null ,"Which product " +
                                             "would you like to delete", "Remove Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
                             if (deleteProduct == null) {
@@ -748,7 +748,7 @@ public class Client {
 
                                 String success = br.readLine();
                                 JOptionPane.showMessageDialog(null, "Success: The product was successfully" +
-                                        "deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                                        " deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
                             }
 
                         }
@@ -760,7 +760,7 @@ public class Client {
                         String products = br.readLine();
                         if (products.equals("1")) {
                             JOptionPane.showMessageDialog(null, "ERROR! There are no products" +
-                                    "associated with you as a seller", "Error", JOptionPane.ERROR_MESSAGE);
+                                    " associated with you as a seller", "Error", JOptionPane.ERROR_MESSAGE);
                         } else {
                             String[] productArray = products.split(";");
 
@@ -775,7 +775,7 @@ public class Client {
                                 index++;
                             }
                             String editProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
-                                            "would you like to edit", "Edit Product", JOptionPane.QUESTION_MESSAGE,
+                                            " would you like to edit", "Edit Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
 
                             if (editProduct == null) {
