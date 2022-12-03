@@ -345,6 +345,7 @@ public class Server {
                                 // 3. Edit existing product
                                 // 4. View store info
                                 // 5. Import CSV file
+                                // 6. View customer's shopping cart
 
                                 if (option.equals("1")) {
                                     pw.write(""); //writes an empty string to follow protocol
@@ -458,6 +459,25 @@ public class Server {
                                         pw.println();
                                         pw.flush();
                                     }
+                                } else if (option.equals("6")) {
+                                    pw.write(""); // write empty string to follow protocol
+                                    pw.println();
+                                    pw.flush();
+
+                                    String customerName = br.readLine();
+                                    Customer customer = new Customer(customerName);
+                                    ArrayList<String> cart = customer.readCurrentShoppingCart(customer);
+                                    if (cart.isEmpty() || cart == null) {
+                                        pw.write("1");
+                                        pw.println();
+                                        pw.flush();
+                                    } else {
+                                        String cartString = String.join(";", cart);
+                                        pw.write(cartString);
+                                        pw.println();
+                                        pw.flush();
+                                    }
+
                                 }
                             }
 
