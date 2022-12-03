@@ -909,6 +909,32 @@ public class Client {
                         }
 
                     } else if (option.equals("Import CSV file of products")) {
+                        pw.write("5");
+                        pw.println();
+                        pw.flush();
+
+                        br.readLine();
+
+                        String filePath = JOptionPane.showInputDialog(null, "Enter the path " +
+                                        "of the CSV file you would like to import", "Import file",
+                                JOptionPane.INFORMATION_MESSAGE);
+
+                        if (filePath == null) {
+                            return;
+                        } else {
+                            pw.write(filePath);
+                            pw.println();
+                            pw.flush();
+
+                            String success = br.readLine();
+                            if (success.equals("1")) {
+                                JOptionPane.showMessageDialog(null, "ERROR! Incorrect file path",
+                                        "Error", JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "File imported successfully",
+                                        "Success", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }
 
                     }
                 }
