@@ -22,23 +22,23 @@ public class Seller {
         this.password = password;
     }
 
-    public void setEmail(String email) {
+    public synchronized void setEmail(String email) {
         this.email = email;
     }
 
-    public String getEmail() {
+    public synchronized String getEmail() {
         return email;
     }
 
-    public void setPassword(String password) {
+    public synchronized void setPassword(String password) {
         this.password = password;
     }
 
-    public String getPassword() {
+    public synchronized String getPassword() {
         return password;
     }
 
-    public void viewOverallMarket() {
+    public synchronized void viewOverallMarket() {
         File f = new File("database.txt");
         try {
             FileReader fr = new FileReader(f);
@@ -56,7 +56,7 @@ public class Seller {
         }
     }
 
-    public void initialise() {
+    public synchronized void initialise() {
         File f = new File("database.txt");
         try {
             FileReader fr = new FileReader(f);
@@ -71,7 +71,9 @@ public class Seller {
         }
     }
 
-    public void writeFile() {
+
+
+    public synchronized void writeFile() {
         File f = new File("database.txt");
         try {
             FileOutputStream fos = new FileOutputStream(f);
@@ -86,8 +88,8 @@ public class Seller {
 
     }
 
-    public int addProduct(String storeName, String productName, String sellerName, String description,
-                          int quantity, double price) {
+    public synchronized int addProduct(String storeName, String productName, String sellerName, String description,
+                                       int quantity, double price) {
         File f = new File("database.txt");
         ArrayList<Integer> productNumbers = new ArrayList<>();
         for (String line : allProducts) {
@@ -137,8 +139,8 @@ public class Seller {
     //returns 1 if the product does not belong to seller's store
     //returns 2 if the product number does not exist
     //return 0 if edit is successful
-    public int editProduct(int productNumber, String newName, String newDescription, int newQuantity,
-                           double newPrice) {
+    public synchronized int editProduct(int productNumber, String newName, String newDescription, int newQuantity,
+                                        double newPrice) {
         boolean flag = false;
         int index = -1;
         for (String product : allProducts) {
@@ -165,7 +167,7 @@ public class Seller {
     // returns 1 if the productNumber does not exist
     //return 2 if the product is not in the seller's store
     // return 0 if deletion is successful
-    public int deleteProduct(int productNumber) {
+    public synchronized int deleteProduct(int productNumber) {
         boolean flag = false;
         int index = -1;
         for (String product : allProducts) {
@@ -190,7 +192,7 @@ public class Seller {
         }
     }
 
-    public ArrayList<String> sellerProduct() {
+    public synchronized ArrayList<String> sellerProduct() {
         String username = this.getEmail();
         ArrayList<String> out = new ArrayList<>();
 
@@ -203,7 +205,7 @@ public class Seller {
         return out;
     }
 
-    public int ViewShoppingCart(String customer) {
+    public synchronized int ViewShoppingCart(String customer) {
         ArrayList<String> sellersCartView = new ArrayList<>();
         File file = new File(customer + "ShoppingCart.txt");
         int numberOfProducts;
@@ -222,7 +224,7 @@ public class Seller {
 
     //returns null if the store does not exist
     //else, returns an arraylist containing the store info
-    public ArrayList<String> storeInfo(String storeName) {
+    public synchronized ArrayList<String> storeInfo(String storeName) {
         ArrayList<String> info = new ArrayList<>();
         File f = new File("customer history.txt");
         double revenue = 0;
@@ -252,7 +254,7 @@ public class Seller {
         }
     }
 
-    public int importFile(String file) throws FileNotFoundException {
+    public synchronized int importFile(String file) throws FileNotFoundException {
         File f = new File(file);
         if (!f.exists()) {
             throw new FileNotFoundException();
