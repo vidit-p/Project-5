@@ -736,21 +736,120 @@ public class Client {
                             String deleteProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
                                             "would you like to delete", "Remove Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
+                            if (deleteProduct == null) {
+                                return;
+                            } else {
 
-                            String productNumber = deleteProduct.substring(16, 22);
+                                String productNumber = deleteProduct.substring(16, 22);
 
-                            pw.write(productNumber);
-                            pw.println();
-                            pw.flush();
+                                pw.write(productNumber);
+                                pw.println();
+                                pw.flush();
 
-                            String success = br.readLine();
-                            JOptionPane.showMessageDialog(null, "Success: The product was successfully" +
-                                    "deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
-
+                                String success = br.readLine();
+                                JOptionPane.showMessageDialog(null, "Success: The product was successfully" +
+                                        "deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                            }
 
                         }
                     } else if (option.equals("Edit existing product")) {
+                        pw.write("3");
+                        pw.println();
+                        pw.flush();
 
+                        String products = br.readLine();
+                        if (products.equals("1")) {
+                            JOptionPane.showMessageDialog(null, "ERROR! There are no products" +
+                                    "associated with you as a seller", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            String[] productArray = products.split(";");
+
+                            String[] out = new String[productArray.length];
+                            int index = 0;
+                            for (String line : productArray) {
+                                String[] lineArray = line.split(",");
+                                out[index] = String.format("Product Number: %s, Product name: %s, Store name: %s, " +
+                                                " Description: %s, Quantity: %s, Price: $%s",
+                                        lineArray[0], lineArray[1], lineArray[2], lineArray[3], lineArray[4],
+                                        lineArray[5]);
+                                index++;
+                            }
+                            String editProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
+                                            "would you like to edit", "Edit Product", JOptionPane.QUESTION_MESSAGE,
+                                    null, out, out[0]);
+
+                            if (editProduct == null) {
+                                return;
+                            } else {
+                                String[] editProductArray = editProduct.split(",");
+                                String productNumber = editProduct.substring(16, 22);
+                                String name = editProductArray[1].substring(15);
+                                String description = editProductArray[3].substring(14);
+                                String quantity = editProductArray[4].substring(11);
+                                String price = editProductArray[5].substring(8);
+
+                                String[] editOptions = {"Product Name", "Product Description", "Quantity", "Price"};
+                                String edit = (String) JOptionPane.showInputDialog(null, "What would you like " +
+                                                "to edit?", "Edit product", JOptionPane.QUESTION_MESSAGE, null, editOptions,
+                                        editOptions[0]);
+
+                                if (edit == null) {
+                                    return;
+                                } else if (edit.equals("Product Name")) {
+                                    name = JOptionPane.showInputDialog(null, "Enter the new " +
+                                            "product name: ", "Edit product name", JOptionPane.INFORMATION_MESSAGE);
+                                    if (name == null) {
+                                        break;
+                                    }
+                                } else if (edit.equals("Product Description")) {
+                                    description = JOptionPane.showInputDialog(null, "Enter the new " +
+                                            "description: ", "Edit description", JOptionPane.INFORMATION_MESSAGE);
+                                    if (description == null) {
+                                        break;
+                                    }
+                                } else if (edit.equals("Quantity")) {
+                                    while (true) {
+                                        try {
+                                            quantity = JOptionPane.showInputDialog(null, "Enter the new " +
+                                                    "quantity: ", "Edit quantity", JOptionPane.INFORMATION_MESSAGE);
+                                            if (quantity == null) {
+                                                break;
+                                            }
+                                            Integer.parseInt(quantity);
+                                            break;
+                                        } catch (NumberFormatException e) {
+                                            JOptionPane.showMessageDialog(null, "Error! Invalid Input. " +
+                                                    "Please try again", "Error", JOptionPane.ERROR_MESSAGE);
+                                        }
+                                    }
+                                } else if (edit.equals("Price")) {
+                                    while (true) {
+                                        try {
+                                            price = JOptionPane.showInputDialog(null, "Enter the new " +
+                                                    "price: ", "Edit price", JOptionPane.INFORMATION_MESSAGE);
+                                            if (price == null) {
+                                                break;
+                                            }
+                                            Integer.parseInt(price);
+                                            break;
+                                        } catch (NumberFormatException e) {
+                                            JOptionPane.showMessageDialog(null, "Error! Invalid Input. " +
+                                                    "Please try again", "Error", JOptionPane.ERROR_MESSAGE);
+                                        }
+                                    }
+                                }
+                                String write  = productNumber + "," + name + "," + description + "," + quantity + "," + price;
+
+                                pw.write(write);
+                                pw.println();
+                                pw.flush();
+
+                                br.readLine();
+
+                                JOptionPane.showMessageDialog(null, "Product successfully edited", "Success",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }
                     }
                 }
             }
