@@ -394,6 +394,30 @@ public class Server {
                                         pw.flush();
                                     }
 
+                                } else if (option.equals("3")) {
+                                    ArrayList<String> sellerProducts = seller.sellerProduct();
+                                    System.out.println(sellerProducts.toString());
+                                    if (sellerProducts.isEmpty() || sellerProducts == null) {
+                                        pw.write("1"); // writes 1 if there are no products associated with
+                                        // the seller
+                                        pw.println();
+                                        pw.flush();
+                                    } else {
+                                        String outputString = String.join(";", sellerProducts);
+                                        pw.write(outputString); // writes an arrayList in the form of a string with
+                                        // each product separated by ";". So split the string using ";".
+                                        pw.println();
+                                        pw.flush();
+
+                                        String edit = br.readLine();
+                                        String[] editArray = edit.split(",");
+                                        seller.editProduct(Integer.parseInt(editArray[0]), editArray[1], editArray[2],
+                                                Integer.parseInt(editArray[3]), Double.parseDouble(editArray[4]));
+
+                                        pw.write("");
+                                        pw.println();
+                                        pw.flush();
+                                    }
                                 }
                             }
 
