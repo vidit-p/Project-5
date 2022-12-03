@@ -661,8 +661,12 @@ public class Client {
                                         productArray[6]);
                             }
                             JOptionPane.showMessageDialog(null, out, "Purchase History",
-                                    JOptionPane.INFORMATION_MESSAGE) ;
+                                    JOptionPane.INFORMATION_MESSAGE);
                         }
+                    } else if (option.equals("Exit")) {
+                        JOptionPane.showMessageDialog(null, "Thank you for using the Online Marketplace!",
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                        return;
                     }
                 }
             } else if (role.equals("2")) {
@@ -712,7 +716,7 @@ public class Client {
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
-                                        "ease enter again", "Error",JOptionPane.ERROR_MESSAGE);
+                                        "ease enter again", "Error", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                         String price;
@@ -727,7 +731,7 @@ public class Client {
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
-                                        "ease enter again", "Error",JOptionPane.ERROR_MESSAGE);
+                                        "ease enter again", "Error", JOptionPane.ERROR_MESSAGE);
                             }
                         }
 
@@ -765,7 +769,7 @@ public class Client {
                                         lineArray[0], lineArray[1], lineArray[2]);
                                 index++;
                             }
-                            String deleteProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
+                            String deleteProduct = (String) JOptionPane.showInputDialog(null, "Which product" +
                                             "would you like to delete", "Remove Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
                             if (deleteProduct == null) {
@@ -806,7 +810,7 @@ public class Client {
                                         lineArray[5]);
                                 index++;
                             }
-                            String editProduct = (String) JOptionPane.showInputDialog(null ,"Which product" +
+                            String editProduct = (String) JOptionPane.showInputDialog(null, "Which product" +
                                             "would you like to edit", "Edit Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
 
@@ -870,7 +874,7 @@ public class Client {
                                         }
                                     }
                                 }
-                                String write  = productNumber + "," + name + "," + description + "," + quantity + "," + price;
+                                String write = productNumber + "," + name + "," + description + "," + quantity + "," + price;
 
                                 pw.write(write);
                                 pw.println();
@@ -968,6 +972,10 @@ public class Client {
                             }
                         }
 
+                    } else if (option.equals("Exit")) {
+                        JOptionPane.showMessageDialog(null, "Thank you for using the Online Marketplace!",
+                                "Marketplace", JOptionPane.INFORMATION_MESSAGE);
+                        return;
                     }
                 }
             }
