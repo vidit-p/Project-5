@@ -936,6 +936,42 @@ public class Client {
                             }
                         }
 
+                    } else if (option.equals("View a customer's shopping cart")) {
+                        pw.write("6");
+                        pw.println();
+                        pw.flush();
+
+                        br.readLine();
+
+                        String customerName = JOptionPane.showInputDialog(null, "Enter the " +
+                                "customer's username whose shopping cart you would like to view", "View " +
+                                "Cart", JOptionPane.INFORMATION_MESSAGE);
+
+                        if (customerName == null) {
+                            return;
+                        } else {
+                            pw.write(customerName);
+                            pw.println();
+                            pw.flush();
+
+                            String cart = br.readLine();
+                            if (cart.equals("1")) {
+                                JOptionPane.showMessageDialog(null, "Error! Nothing " +
+                                        "is customer's " + "cart yet!", "Error", JOptionPane.ERROR_MESSAGE) ;
+                            } else {
+                                String[] cartArray = cart.split(";");
+                                String out = "Customer Cart:\n";
+                                for (String text : cartArray) {
+                                    System.out.println(text);
+                                    String[] textArray = text.split(",");
+                                    out = out + String.format("Product number: %s \t Product Name: %s \t " +
+                                                    "Quantity available: %s \t Price: %s\n",
+                                            textArray[0], textArray[1], textArray[4], textArray[5]);
+                                }
+
+                                JOptionPane.showMessageDialog(null, out, "Customer Cart", JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }
                     }
                 }
             }
