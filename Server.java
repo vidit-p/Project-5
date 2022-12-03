@@ -343,6 +343,8 @@ public class Server {
                                 // 1. If the seller wants to add a new product
                                 // 2. If the seller wants to delete a product
                                 // 3. Edit existing product
+                                // 4. View store info
+                                // 5. Import CSV file
 
                                 if (option.equals("1")) {
                                     pw.write(""); //writes an empty string to follow protocol
@@ -396,7 +398,6 @@ public class Server {
 
                                 } else if (option.equals("3")) {
                                     ArrayList<String> sellerProducts = seller.sellerProduct();
-                                    System.out.println(sellerProducts.toString());
                                     if (sellerProducts.isEmpty() || sellerProducts == null) {
                                         pw.write("1"); // writes 1 if there are no products associated with
                                         // the seller
@@ -415,6 +416,45 @@ public class Server {
                                                 Integer.parseInt(editArray[3]), Double.parseDouble(editArray[4]));
 
                                         pw.write("");
+                                        pw.println();
+                                        pw.flush();
+                                    }
+                                } else if (option.equals("4")) {
+                                    ArrayList<String> sellerProducts = seller.sellerProduct();
+                                    if (sellerProducts.isEmpty() || sellerProducts == null) {
+                                        pw.write("1"); // writes 1 if there are no products associated with
+                                        // the seller
+                                        pw.println();
+                                        pw.flush();
+                                    } else {
+                                        String outputString = String.join(";", sellerProducts);
+                                        pw.write(outputString); // writes an arrayList in the form of a string with
+                                        // each product separated by ";". So split the string using ";".
+                                        pw.println();
+                                        pw.flush();
+
+                                        String store = br.readLine();
+                                        ArrayList<String> stores = seller.storeInfo(store);
+                                        String out = String.join(";", stores);
+                                        pw.write(out);
+                                        pw.println();
+                                        pw.flush();
+                                    }
+                                } else if (option.equals("5")) {
+                                    pw.write(""); // writes an empty string to follow protocol
+                                    pw.println();
+                                    pw.flush();
+
+                                    String filePath = br.readLine();
+                                    System.out.println(filePath);
+
+                                    try {
+                                        seller.importFile(filePath);
+                                        pw.write("0");
+                                        pw.println();
+                                        pw.flush();
+                                    } catch (FileNotFoundException e){
+                                        pw.write("1");
                                         pw.println();
                                         pw.flush();
                                     }
