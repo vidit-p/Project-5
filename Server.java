@@ -2,12 +2,15 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
-public class Server {
-    public static void main(String[] args) {
+public class Server implements Runnable{
+    Socket socket;
+
+    public Server(Socket socket) {
+        this.socket = socket;
+    }
+    public void run() {
         while (true) {
             try {
-                ServerSocket serverSocket = new ServerSocket(4244);
-                Socket socket = serverSocket.accept();
                 InputStreamReader isr = new InputStreamReader(socket.getInputStream());
                 BufferedReader br = new BufferedReader(isr);
                 PrintWriter pw = new PrintWriter(socket.getOutputStream());
@@ -436,10 +439,16 @@ public class Server {
 
                                         String store = br.readLine();
                                         ArrayList<String> stores = seller.storeInfo(store);
-                                        String out = String.join(";", stores);
-                                        pw.write(out);
-                                        pw.println();
-                                        pw.flush();
+                                        if (stores == null) {
+                                            pw.write("1");
+                                            pw.println();
+                                            pw.flush();
+                                        } else {
+                                            String out = String.join(";", stores);
+                                            pw.write(out);
+                                            pw.println();
+                                            pw.flush();
+                                        }
                                     }
                                 } else if (option.equals("5")) {
                                     pw.write(""); // writes an empty string to follow protocol
@@ -498,6 +507,20 @@ public class Server {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            ServerSocket serverSocket = new ServerSocket(4244);
+
+            while (true) {
+                Socket socket = serverSocket.accept();
+                Server server = new Server(socket);
+                new Thread(server).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
