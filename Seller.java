@@ -15,7 +15,7 @@ public class Seller {
     private static int productNumber;
     private String email; //the customer's username/ email
     private String password; // the password to customer's account
-    private ArrayList<String> allProducts = new ArrayList<String>();
+    ArrayList<String> allProducts = new ArrayList<String>();
 
     public Seller(String email, String password) {
         this.email = email;
@@ -91,12 +91,13 @@ public class Seller {
         File f = new File("database.txt");
         ArrayList<Integer> productNumbers = new ArrayList<>();
         for (String line : allProducts) {
+            System.out.println(line);
             String[] text = line.split(",");
             int number = Integer.parseInt(text[0]);
             productNumbers.add(number);
         }
         Random random = new Random();
-        productNumber = random.nextInt(9999999);
+        productNumber = random.nextInt(100000,999999);
         while (productNumbers.contains(productNumber)) {
             productNumber = random.nextInt();
         }
@@ -187,6 +188,19 @@ public class Seller {
         } else {
             return 0;
         }
+    }
+
+    public ArrayList<String> sellerProduct() {
+        String username = this.getEmail();
+        ArrayList<String> out = new ArrayList<>();
+
+        for (String line : allProducts) {
+            String[] lineArray = line.split(",");
+            if (lineArray[6].equals(username)) {
+                out.add(line);
+            }
+        }
+        return out;
     }
 
     public int ViewShoppingCart(String customer) {
