@@ -6,8 +6,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class Client {
-    public static void main(String[] args) {
+public class Client implements Runnable{
+    Socket socket;
+
+    public Client (Socket socket) {
+        this.socket = socket;
+    }
+
+    public void run() {
         try {
             Socket socket = new Socket("localhost", 4244);
             InputStreamReader isr = new InputStreamReader(socket.getInputStream());
@@ -1015,6 +1021,14 @@ public class Client {
 
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    } public static void main(String[] args) {
+        try {
+            Socket socket = new Socket("localhost", 4244);
+            Client client = new Client(socket);
+            new Thread(client).start();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
