@@ -27,19 +27,19 @@ public class Customer {
         this.email = email;
     }
 
-    public String getEmail() {
+    public synchronized String getEmail() {
         return email;
     }
 
-    public void setPassword(String password) {
+    public synchronized void setPassword(String password) {
         this.password = password;
     }
 
-    public String getPassword() {
+    public synchronized String getPassword() {
         return password;
     }
 
-    public void writeFile() {
+    public synchronized void writeFile() {
         File f = new File("database.txt");
         try {
             FileOutputStream fos = new FileOutputStream(f);
@@ -57,7 +57,7 @@ public class Customer {
     //call this function at the beginning of the main method to initialise the static field allProducts
     //CALLING THIS FUNCTION IS CRITICAL FOR PROPER FUNCTIONING
     //just write "<customerObject>.initialise()"; example is given in the test case below
-    public void initialise() {
+    public synchronized void initialise() {
         File f = new File("database.txt");
         try {
             FileReader fr = new FileReader(f);
@@ -73,7 +73,7 @@ public class Customer {
     }
 
     // Function to display all the products for sale
-    public ArrayList<String> viewOverallMarket() {
+    public synchronized ArrayList<String> viewOverallMarket() {
         File f = new File("database.txt");
         ArrayList<String> productList = new ArrayList<>();
         try {
@@ -98,7 +98,7 @@ public class Customer {
     // The lines then can be printed in the main function
     //returns empty arrayList if there are no matches
     //in the main method check if this function returns an empty arraylist, if it does, print an error message
-    public ArrayList<String> searchUsingTerms(String searchTerm) {
+    public synchronized ArrayList<String> searchUsingTerms(String searchTerm) {
         ArrayList<String> matchProducts = new ArrayList<String>();
         for (String product : allProducts) {
             if (product.toLowerCase().contains(searchTerm.toLowerCase())) {
@@ -111,7 +111,7 @@ public class Customer {
     //Function that returns the description of a product
     //based on the productNumber parameter
     //if the product number is incorrect, it returns empty string
-    public String viewProductInfo(int productNumber) {
+    public synchronized String viewProductInfo(int productNumber) {
         String out = "";
         for (String product : allProducts) {
             String[] productArray = product.split(",");
@@ -130,7 +130,7 @@ public class Customer {
     //returns 0 if there was no error and available quantity was changed successfully
     //returns 1 if quantity > available quantity
     //writes the new available quantity of the product in the customer history file
-    public int buyProduct(int productNumber, int quantity) {
+    public synchronized int buyProduct(int productNumber, int quantity) {
         File f = new File("customer history.txt");
         int index = -1;
         String productBought = "";
@@ -171,7 +171,7 @@ public class Customer {
 
 
     //returns a sorted arraylist of products (the text in the file) by price
-    public ArrayList<String> sortByPrice() {
+    public synchronized ArrayList<String> sortByPrice() {
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -190,7 +190,7 @@ public class Customer {
     }
 
     //returns a sorted arraylist of products (the text in the file) by quantity
-    public ArrayList<String> sortByQuantity() {
+    public synchronized ArrayList<String> sortByQuantity() {
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -209,7 +209,7 @@ public class Customer {
     }
 
     //returns an arrayList containing the products customer has bought till now
-    public ArrayList<String> viewHistory() {
+    public synchronized ArrayList<String> viewHistory() {
         ArrayList<String> history = new ArrayList<String>();
         try {
             File f = new File("customer history.txt");
@@ -231,7 +231,7 @@ public class Customer {
     }
 
 
-    public ArrayList<String> readCurrentShoppingCart(Customer customer) {
+    public synchronized ArrayList<String> readCurrentShoppingCart(Customer customer) {
         ArrayList<String> shoppingCart = new ArrayList<String>();
         try {
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
@@ -249,7 +249,7 @@ public class Customer {
         return shoppingCart;
     }
 
-    public void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {
+    public synchronized void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {
         try {
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -263,14 +263,14 @@ public class Customer {
         }
     }
 
-    public void addToCart(String product, Customer customer) {
+    public synchronized void addToCart(String product, Customer customer) {
         ArrayList<String> shoppingCart = new ArrayList<String>();
         shoppingCart = readCurrentShoppingCart(customer);
         shoppingCart.add(product);
         writeCurrentShoppingCart(shoppingCart, customer);
     }
 
-    public void clearCart(Customer customer) throws IOException {
+    public synchronized void clearCart(Customer customer) throws IOException {
         String file = customer.getEmail() + "ShoppingCart.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         writer.close();
@@ -278,7 +278,7 @@ public class Customer {
     // returns 1 if any product is not available, i.e., has 0 quantity
     // buys all the products except the products which are not available and clears the cart
     // returns 2 if all products are available, buys the products and clears the cart
-    public int checkout(Customer customer) {
+    public synchronized int checkout(Customer customer) {
         boolean flag = false;
         ArrayList<String> checkoutCart = readCurrentShoppingCart(customer);
         for (int i = 0; i < checkoutCart.size(); i++) {
