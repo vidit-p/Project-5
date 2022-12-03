@@ -830,7 +830,7 @@ public class Client {
                                             if (price == null) {
                                                 break;
                                             }
-                                            Integer.parseInt(price);
+                                            Double.parseDouble(price);
                                             break;
                                         } catch (NumberFormatException e) {
                                             JOptionPane.showMessageDialog(null, "Error! Invalid Input. " +
@@ -850,6 +850,66 @@ public class Client {
                                         JOptionPane.INFORMATION_MESSAGE);
                             }
                         }
+                    } else if (option.equals("View information about your store")) {
+                        pw.write("4");
+                        pw.println();
+                        pw.flush();
+
+                        String seller = br.readLine();
+                        if (seller.equals("1")) {
+                            JOptionPane.showMessageDialog(null, "Error! There are no " +
+                                    "stores associated" + " with you as a seller", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            String[] sellerArray = seller.split(";");
+
+                            ArrayList<String> sellerStores = new ArrayList<>();
+                            for (String line : sellerArray) {
+                                String[] storeArray = line.split(",");
+                                String store = storeArray[2];
+                                if (!sellerStores.contains(store)) {
+                                    sellerStores.add(store);
+                                }
+                            }
+
+                            String[] sellerStoresArray = sellerStores.toArray(new String[sellerStores.size()]);
+
+                            String store = (String) JOptionPane.showInputDialog(null, "Which store's infor" +
+                                            "mation would you like to see?", "Store info", JOptionPane.QUESTION_MESSAGE,
+                                    null, sellerStoresArray, sellerStoresArray[0]);
+
+                            if (store == null) {
+                                return;
+                            } else {
+                                pw.write(store);
+                                pw.println();
+                                pw.flush();
+
+                                String show = br.readLine();
+                                String[] showArray = show.split(";");
+                                String[] out = new String[showArray.length];
+                                int index = 0;
+                                for (String text : showArray) {
+                                    System.out.println(text);
+                                    if (!text.contains("revenue")) {
+                                        String[] textArray = text.split(",");
+                                        out[index] = String.format("Product name: %s \t Store name: %s \t price: %s \t customer: %s\n", textArray[2],
+                                                textArray[3], textArray[6], textArray[0]);
+                                        index++;
+                                    } else {
+                                        out[showArray.length - 1] = text;
+                                    }
+                                }
+                                String output = "Store information:\n";
+                                for (String line : out) {
+                                    output = output + "\n" + line;
+                                }
+                                JOptionPane.showMessageDialog(null, output, "Store information",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                            }
+                        }
+
+                    } else if (option.equals("Import CSV file of products")) {
+
                     }
                 }
             }
