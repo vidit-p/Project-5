@@ -25,16 +25,10 @@ public class Server implements Runnable{
 
                 FileReader fr = new FileReader(f);
                 BufferedReader bfr = new BufferedReader(fr);
-                String text = bfr.readLine();
                 ArrayList<String> databaseText = new ArrayList<String>();
                 ArrayList<String> loginText = new ArrayList<String>();
 
-
-                while (text != null) {
-                    databaseText.add(text);
-                    text = bfr.readLine();
-                }
-                text = bfr1.readLine();
+                String text = bfr1.readLine();
                 while (text != null) {
                     loginText.add(text);
                     text = bfr1.readLine();
@@ -188,6 +182,8 @@ public class Server implements Runnable{
                                 } else if (Integer.parseInt(option) == 3) {
                                     ArrayList<String> cart = customer.readCurrentShoppingCart(customer);
                                     String output = String.join(";", cart);
+                                    System.out.println(output);
+
                                     pw.write(output); // writes an arrayList as a string containing all the products in the
                                     // shopping cart
                                     // each product will be separated by ';'. So split the string with ';' as the
@@ -290,6 +286,11 @@ public class Server implements Runnable{
                                     pw.flush();
                                     String product = "";
                                     String productNumber = br.readLine(); // reads product number whose information is needed
+                                    String text1 = bfr.readLine();
+                                    while (text1 != null) {
+                                        databaseText.add(text1);
+                                        text1 = bfr.readLine();
+                                    }
                                     for (String line : databaseText) {
                                         String[] lineArray = line.split(",");
                                         if (Integer.parseInt(lineArray[0]) == Integer.parseInt(productNumber)) {
@@ -364,7 +365,6 @@ public class Server implements Runnable{
                                     int add = seller.addProduct(productArray[0], productArray[1], productArray[2], productArray[3],
                                             Integer.parseInt(productArray[4]), Double.parseDouble(productArray[5]));
 
-                                    System.out.println(add);
 
                                     if (add == 1) {
                                         pw.write("ERROR"); // writes error if the store is not owned by the seller
@@ -377,7 +377,6 @@ public class Server implements Runnable{
                                     }
                                 } else if (option.equals("2")) {
                                     ArrayList<String> sellerProducts = seller.sellerProduct();
-                                    System.out.println(sellerProducts.toString());
                                     if (sellerProducts.isEmpty() || sellerProducts == null) {
                                         pw.write("1"); // writes 1 if there are no products associated with
                                         // the seller
@@ -392,7 +391,6 @@ public class Server implements Runnable{
 
 
                                         String productNumber = br.readLine();
-                                        System.out.println(productNumber);
                                         int delete = seller.deleteProduct(Integer.parseInt(productNumber));
                                         pw.write(delete); // writes 0 if the deletion is successful
                                         // else, writes either 1 or 2. Refer to deleteProduct method in seller class
@@ -456,7 +454,6 @@ public class Server implements Runnable{
                                     pw.flush();
 
                                     String filePath = br.readLine();
-                                    System.out.println(filePath);
 
                                     try {
                                         seller.importFile(filePath);
