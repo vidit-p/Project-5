@@ -471,6 +471,9 @@ public class Client implements Runnable{
 
                         if (empty.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "Your shopping cart is empty.", "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
+                            pw.write("1");
+                            pw.println();
+                            pw.flush();
                         } else {
 
                             String[] productoss = empty.split(";");
@@ -529,6 +532,9 @@ public class Client implements Runnable{
                                         "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
 
                             } else if (next3.equals("Return to menu")) {
+                                pw.write("1");
+                                pw.println();
+                                pw.flush();
                                 continue;
                             } else {
                                 return;
