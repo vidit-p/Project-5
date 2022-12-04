@@ -58,6 +58,7 @@ public class Customer {
     //CALLING THIS FUNCTION IS CRITICAL FOR PROPER FUNCTIONING
     //just write "<customerObject>.initialise()"; example is given in the test case below
     public synchronized void initialise() {
+        allProducts = new ArrayList<>();
         File f = new File("database.txt");
         try {
             FileReader fr = new FileReader(f);
@@ -74,6 +75,7 @@ public class Customer {
 
     // Function to display all the products for sale
     public synchronized ArrayList<String> viewOverallMarket() {
+        initialise();
         File f = new File("database.txt");
         ArrayList<String> productList = new ArrayList<>();
         try {
@@ -131,6 +133,7 @@ public class Customer {
     //returns 1 if quantity > available quantity
     //writes the new available quantity of the product in the customer history file
     public synchronized int buyProduct(int productNumber, int quantity) {
+        initialise();
         File f = new File("customer history.txt");
         int index = -1;
         String productBought = "";
@@ -172,6 +175,7 @@ public class Customer {
 
     //returns a sorted arraylist of products (the text in the file) by price
     public synchronized ArrayList<String> sortByPrice() {
+        initialise();
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -191,6 +195,7 @@ public class Customer {
 
     //returns a sorted arraylist of products (the text in the file) by quantity
     public synchronized ArrayList<String> sortByQuantity() {
+        initialise();
         ArrayList<Product> productArrayList = new ArrayList<Product>();
         ArrayList<String> sortedArrayList = new ArrayList<String>();
         for (String line : allProducts) {
@@ -232,8 +237,17 @@ public class Customer {
 
 
     public synchronized ArrayList<String> readCurrentShoppingCart(Customer customer) {
+        File f = new File("database.txt");
         ArrayList<String> shoppingCart = new ArrayList<String>();
+        ArrayList<String> updatedCartList = new ArrayList<>();
         try {
+            FileReader fr = new FileReader(f);
+            BufferedReader bfr = new BufferedReader(fr);
+            String text = bfr.readLine();
+            while (text != null) {
+                allProducts.add(text);
+                text = bfr.readLine();
+            }
             File file = new File(customer.getEmail() + "ShoppingCart.txt");
             if (!file.exists()) {
                 boolean x = file.createNewFile();
@@ -243,10 +257,23 @@ public class Customer {
             while ((line = reader.readLine()) != null) {
                 shoppingCart.add(line);
             }
+            for (String line1 : shoppingCart) {
+                String[] lineArray = line1.split(",");
+                System.out.println(allProducts.toString());
+                for (String newText : allProducts) {
+                    String[] newTextArray = newText.split(",");
+                    if (lineArray[0].equals(newTextArray[0])) {
+                        System.out.println(newText);
+                        updatedCartList.add(newText);
+                        break;
+                    }
+                }
+
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return shoppingCart;
+        return updatedCartList;
     }
 
     public synchronized void writeCurrentShoppingCart(ArrayList<String> shoppingCart, Customer customer) {
