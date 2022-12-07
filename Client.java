@@ -198,9 +198,10 @@ public class Client {
                         pw.flush();
 
                         String info = br.readLine();
-                        String[] next = new String[2];
+                        String[] next = new String[3];
                         next[0] = "Buy product";
                         next[1] = "Add to cart";
+                        next[2] = "Go back to menu";
                         String next1 = (String) JOptionPane.showInputDialog(null, info + " .What would you like " +
                                 "to do next?", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
 
@@ -249,13 +250,19 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else {
+                        } else if (next.equals("Add to cart")){
                             pw.write("2");
                             pw.println();
                             pw.flush();
                             empty = br.readLine();
                             JOptionPane.showMessageDialog(null, "Product successfully added to cart.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            pw.write("3");
+                            pw.println();
+                            pw.flush();
+                            empty = br.readLine();
+                            continue;
                         }
                     } else if (option.equals("Sort the market by price")) {
 
@@ -303,9 +310,10 @@ public class Client {
                         String info = br.readLine();
                         String[] outArray = info.split(",");
                         String out = "";
-                        String[] next = new String[2];
+                        String[] next = new String[3];
                         next[0] = "Buy product";
                         next[1] = "Add to cart";
+                        next[2] = "Go back to menu";
                         String next1 = (String) JOptionPane.showInputDialog(null, info + "What would you like " +
                                 "to do next?", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
 
@@ -355,13 +363,19 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else {
+                        } else if (next1.equals("Add to cart")){
                             pw.write("2");
                             pw.println();
                             pw.flush();
                             empty = br.readLine();
                             JOptionPane.showMessageDialog(null, "Product successfully added to cart.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            pw.write("3");
+                            pw.println();
+                            pw.flush();
+                            empty = br.readLine();
+                            continue;
                         }
 
                     } else if (option.equals("Sort the market by quantity")) {
@@ -408,9 +422,10 @@ public class Client {
                         String info = br.readLine();
                         String[] outArray = info.split(",");
                         String out = "";
-                        String[] next = new String[2];
+                        String[] next = new String[3];
                         next[0] = "Buy product";
                         next[1] = "Add to cart";
+                        next[2] = "Go back to menu";
                         String next1 = (String) JOptionPane.showInputDialog(null, "What would you like " +
                                 "to do next?", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
 
@@ -460,13 +475,19 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else {
+                        } else if (next1.equals("Add to cart")){
                             pw.write("2");
                             pw.println();
                             pw.flush();
                             empty = br.readLine();
                             JOptionPane.showMessageDialog(null, "Product successfully added to cart.", "Success",
                                     JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            pw.write("3");
+                            pw.println();
+                            pw.flush();
+                            empty = br.readLine();
+                            continue;
                         }
                     } else if (option.equals("View shopping cart")) {
                         pw.write("3");
@@ -616,9 +637,10 @@ public class Client {
                             String info = br.readLine();
                             String[] outArray = info.split(",");
                             empty = "";
-                            String[] next = new String[2];
+                            String[] next = new String[3];
                             next[0] = "Buy product";
                             next[1] = "Add to cart";
+                            next[2] = "Go back to menu";
                             String next1 = (String) JOptionPane.showInputDialog(null, info + "What would you like " +
                                     "to do next?", "Product info", JOptionPane.QUESTION_MESSAGE, null, next, next[0]);
 
@@ -657,13 +679,19 @@ public class Client {
                                     JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                             "ERROR", JOptionPane.ERROR_MESSAGE);
                                 }
-                            } else {
+                            } else if (next1.equals("Add to cart")){
                                 pw.write("2");
                                 pw.println();
                                 pw.flush();
                                 empty = br.readLine();
                                 JOptionPane.showMessageDialog(null, "Product successfully added to cart.", "Success",
                                         JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                pw.write("3");
+                                pw.println();
+                                pw.flush();
+                                empty = br.readLine();
+                                continue;
                             }
 
                         }
