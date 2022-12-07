@@ -39,6 +39,7 @@ public class Seller {
     }
 
     public synchronized void viewOverallMarket() {
+        initialise();
         File f = new File("database.txt");
         try {
             FileReader fr = new FileReader(f);
@@ -90,6 +91,7 @@ public class Seller {
 
     public synchronized int addProduct(String storeName, String productName, String sellerName, String description,
                                        int quantity, double price) {
+        initialise();
         File f = new File("database.txt");
         ArrayList<Integer> productNumbers = new ArrayList<>();
         for (String line : allProducts) {
@@ -141,6 +143,7 @@ public class Seller {
     //return 0 if edit is successful
     public synchronized int editProduct(int productNumber, String newName, String newDescription, int newQuantity,
                                         double newPrice) {
+        initialise();
         boolean flag = false;
         int index = -1;
         for (String product : allProducts) {
@@ -168,6 +171,7 @@ public class Seller {
     //return 2 if the product is not in the seller's store
     // return 0 if deletion is successful
     public synchronized int deleteProduct(int productNumber) {
+        initialise();
         boolean flag = false;
         int index = -1;
         for (String product : allProducts) {
@@ -193,6 +197,7 @@ public class Seller {
     }
 
     public synchronized ArrayList<String> sellerProduct() {
+        initialise();
         String username = this.getEmail();
         ArrayList<String> out = new ArrayList<>();
 
@@ -206,6 +211,7 @@ public class Seller {
     }
 
     public synchronized int ViewShoppingCart(String customer) {
+        initialise();
         ArrayList<String> sellersCartView = new ArrayList<>();
         File file = new File(customer + "ShoppingCart.txt");
         int numberOfProducts;
@@ -225,6 +231,7 @@ public class Seller {
     //returns null if the store does not exist
     //else, returns an arraylist containing the store info
     public synchronized ArrayList<String> storeInfo(String storeName) {
+        initialise();
         ArrayList<String> info = new ArrayList<>();
         File f = new File("customer history.txt");
         double revenue = 0;
@@ -255,6 +262,7 @@ public class Seller {
     }
 
     public synchronized int importFile(String file) throws FileNotFoundException {
+        initialise();
         File f = new File(file);
         if (!f.exists()) {
             throw new FileNotFoundException();
