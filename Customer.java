@@ -101,6 +101,7 @@ public class Customer {
     //returns empty arrayList if there are no matches
     //in the main method check if this function returns an empty arraylist, if it does, print an error message
     public synchronized ArrayList<String> searchUsingTerms(String searchTerm) {
+        initialise();
         ArrayList<String> matchProducts = new ArrayList<String>();
         for (String product : allProducts) {
             if (product.toLowerCase().contains(searchTerm.toLowerCase())) {
@@ -114,6 +115,7 @@ public class Customer {
     //based on the productNumber parameter
     //if the product number is incorrect, it returns empty string
     public synchronized String viewProductInfo(int productNumber) {
+        initialise();
         String out = "";
         for (String product : allProducts) {
             String[] productArray = product.split(",");
@@ -237,6 +239,7 @@ public class Customer {
 
 
     public synchronized ArrayList<String> readCurrentShoppingCart(Customer customer) {
+        initialise();
         File f = new File("database.txt");
         ArrayList<String> shoppingCart = new ArrayList<String>();
         ArrayList<String> updatedCartList = new ArrayList<>();
