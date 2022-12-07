@@ -307,6 +307,7 @@ public class Server implements Runnable{
                                     String next = br.readLine(); // reads what the user wants to do next
                                     // 1. if the user wants to buy product
                                     // 2. if the user wants to add to shopping cart
+                                    // 3. if the user wants to go back to main menu
 
                                     if (Integer.parseInt(next) == 1) {
                                         pw.write("okay");
@@ -328,8 +329,13 @@ public class Server implements Runnable{
                                         pw.write(""); // writes success if the product was successfully added to cart
                                         pw.println();
                                         pw.flush();
+                                    } else {
+                                        pw.write(""); // writes success if the product was successfully added to cart
+                                        pw.println();
+                                        pw.flush();
+                                        continue;
                                     }
-                                } else if (Integer.parseInt(option) == 7) {
+                                } else if (Integer.parseInt(option) == 8) {
                                     break;
                                 }
                             }
