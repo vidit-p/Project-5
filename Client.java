@@ -141,7 +141,6 @@ public class Client {
             pw.flush();
 
             String role = br.readLine();
-            System.out.println("role: " + role);
             if (role.equals("1")) {
                 while (true) {
                     String[] options = {"View all the products", "Sort the market by price", "Sort the market by " +
@@ -495,7 +494,6 @@ public class Client {
                         pw.flush();
 
                         String empty = br.readLine();
-                        System.out.println(empty);
 
                         if (empty.isEmpty()) {
                             JOptionPane.showMessageDialog(null, "Your shopping cart is empty.", "Shopping Cart", JOptionPane.INFORMATION_MESSAGE);
@@ -982,7 +980,6 @@ public class Client {
                                     String[] out = new String[showArray.length];
                                     int index = 0;
                                     for (String text : showArray) {
-                                        System.out.println(text);
                                         if (!text.contains("revenue")) {
                                             String[] textArray = text.split(",");
                                             out[index] = String.format("Product name: %s \t Store name: %s \t price: %s \t customer: %s\n", textArray[2],
@@ -1056,7 +1053,6 @@ public class Client {
                                 String[] cartArray = cart.split(";");
                                 String out = "Customer Cart:\n";
                                 for (String text : cartArray) {
-                                    System.out.println(text);
                                     String[] textArray = text.split(",");
                                     out = out + String.format("Product number: %s \t Product Name: %s \t " +
                                                     "Quantity available: %s \t Price: %s\n",

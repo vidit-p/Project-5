@@ -48,8 +48,6 @@ public class Seller {
             String text = bfr.readLine();
             while (text != null) {
                 String[] product = text.split(",");
-                System.out.printf("Product Number: %s \t Product Name:%s \t Store Name: %s \t Price: %s\n",
-                        product[0], product[1], product[2], product[5]);
                 text = bfr.readLine();
             }
         } catch (Exception e) {
@@ -95,7 +93,6 @@ public class Seller {
         File f = new File("database.txt");
         ArrayList<Integer> productNumbers = new ArrayList<>();
         for (String line : allProducts) {
-            System.out.println(line);
             String[] text = line.split(",");
             int number = Integer.parseInt(text[0]);
             productNumbers.add(number);

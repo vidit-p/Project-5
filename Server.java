@@ -182,7 +182,6 @@ public class Server implements Runnable{
                                 } else if (Integer.parseInt(option) == 3) {
                                     ArrayList<String> cart = customer.readCurrentShoppingCart(customer);
                                     String output = String.join(";", cart);
-                                    System.out.println(output);
 
                                     pw.write(output); // writes an arrayList as a string containing all the products in the
                                     // shopping cart

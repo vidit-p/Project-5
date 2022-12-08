@@ -262,11 +262,9 @@ public class Customer {
             }
             for (String line1 : shoppingCart) {
                 String[] lineArray = line1.split(",");
-                System.out.println(allProducts.toString());
                 for (String newText : allProducts) {
                     String[] newTextArray = newText.split(",");
                     if (lineArray[0].equals(newTextArray[0])) {
-                        System.out.println(newText);
                         updatedCartList.add(newText);
                         break;
                     }
