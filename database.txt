@@ -1,0 +1,7 @@
+856627,bat,hello,size 5 bat,30,20.0,pqr@purdue.edu
+947410,cap,hi,size 3 cap,30,20.0,pqr@purdue.edu
+605558,cap,hi,size 3 cap,30,20.0,pqr@purdue.edu
+234795,cap,hi,size 3 cap,30,20.0,pqr@purdue.edu
+710948,cap,hi,size 3 cap,30,20.0,pqr@purdue.edu
+946338,cap,hi,size 3 cap,30,20.0,pqr@purdue.edu
+715391,cap,hi,size 3 cap,30,20.0,pqr@purdue.edu
