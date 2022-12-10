@@ -457,6 +457,27 @@ Expected Result: New Keyboard window opens prompting
 the user to input the path of the CSV file to input
 Test Result: Passed.
 
+Test 48: Using the Csv file in order to add products to the 
+store
+steps:
+1: Complete test 47 and start on the keyboard window which
+prompts the user to input the pathname of a csv file.
+2: Input the full pathname of the csv file and press ok
+Expected Result: New window opens up with a message telling
+the user that the file has been imported successfully. All 
+the products in the CSV file will be imported into the store.
+
+
+Test 49: Using an invalid pathname of the csv file.
+steps:
+1: Complete test 47 and start on the keyboard window which
+prompts the user to input the pathname of a csv file.
+2: Input an invalid pathname of a csv file and press ok
+Expected Result: An error window opens up telling the user
+that the CSV file inputted is invalid, once "OK" is pressed,
+it will direct the seller back to the main menu
+Test Result: Passed.
+
 
 
 
