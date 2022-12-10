@@ -1,4 +1,4 @@
-TEST 1: Successful Launch
+Test 1: Successful Launch
 Steps:
 1: Run server
 2: Run client
@@ -6,7 +6,7 @@ Expected result: Initial window pops up prompting the user
 to select whether they want to create an account or log in.
 Test status: Passed.
 
-TEST 2: Successful Cancel.
+Test 2: Successful Cancel.
 Steps: 
 1: launch program successfully.
 2: On window when prompted to create account or log in, 
@@ -240,7 +240,9 @@ steps:
 1: start on the main menu after logging in as customer
 2: Select from the dropdown: View shopping cart and press OK
 Expected Result: New Window will open with a description of your
-shopping cart
+shopping cart and an option to checkout. When checkout is pressed
+it will buy all of the products from the shopping cart.
+Test Result: Passed.
 
 Test 25: View shopping cart when it is empty
 steps:
@@ -289,6 +291,178 @@ the functionalities of this window are identical to that one. The options from
 this window will have the same functionalities as tested in
 test cases 16-19
 Test Result: Passed.
+
+Test 30: Add a product to the store as a seller
+steps:
+1: Login using a seller account and press ok
+2: Start on the main menu for seller, this should be a drop down 
+menu similar to that of customer.
+3: Select from the dropdown menu, add a product to the market
+and press "OK"
+Expected Result: New window opens up with a keyboard entry
+and a message displaying what is the name of the Store you are
+adding the product to
+Test Result: Passed.
+
+Test 31: Entering the name of the store
+steps:
+1: Complete test 30, and start on the keyboard input window
+2: Enter the name of the sellers store into the input
+and then press OK
+Expected Result: New keyboard input window opens up
+with a prompt to enter the name of the product
+Test Result: Passed.
+ 
+Test 32: Entering the name of the product.
+steps:
+1: Complete test 31, and start on the keyboard input window
+for the name of the product
+2: Enter the name of the product and then press "OK"
+Expected Result: New Keyboard input window opens up
+with a prompt to enter a short description of the product
+Test Result: Passed. 
+
+Test 33: Entering the Description of the product.
+steps:
+1: Complete test 32, and start on the keyboard input window
+for the Description of the product
+2: Enter the Description of the product and then press "OK"
+Expected Result: New Keyboard input window opens up
+with a prompt to enter the quantity available of the product
+Test Result: Passed. 
+
+Test 34: Entering the Price of the product.
+steps:
+1: Complete test 33, and start on the keyboard input window
+for the price of the product
+2: Enter the price of the product and then press "OK"
+Expected Result: New window opens with a message
+telling the user that the product has been added to the 
+marketplace. When ok is pressed, it directs back to the 
+main menu.
+Test Result: Passed. 
+
+Test 35: Removing a product from the market
+steps:
+1: Start on the main menu after logging in as a seller
+2: select from the dropdown: Remove a product from the market
+and press "OK"
+Expected Result: New dropdown menu opens with options to
+select a product
+Test Result: Passed.
+
+Test 36: Select and remove the product.
+steps:
+1: Complete test 35 and start on the new dropdown menu
+with all the products 
+2: Select a product from the dropdown that you want to remove from 
+the store and press "OK"
+Expected Result: New window opens with a message
+telling the user that the product has been successfully 
+deleted.
+Test Result: Passed.
+
+Test 37: Edit an existing product in the store
+steps:
+1: Start on the main menu after logging in as a seller
+2: Select "edit an existing product from the dropdown menu"
+Expected Result: New dropdown menu opens up with all of the
+product available.
+Test Result: Passed.
+
+Test 38: Selecting a product to edit
+steps:
+1: Complete test 37 and start on the new dropdown menu
+2: Select a product to edit from the dropdown and select "OK"
+Expected Result: New dropdown pops up with options to edit
+the products, name, description, quantity and price
+Test Result: Passed.
+
+Test 39: Selecting a field to edit.
+steps:
+1: Complete test 38 and start on the dropdown
+2: From the dropdown, select which field of the product
+you want to edit.
+Expected Result: A new keyboard input window opens
+up prompting the user to input the new value for the field
+Test Result: Passed.
+
+Test 40: Editing the field and updating the value
+steps:
+1: Complete test 39 and start at the new keyboard entry
+window to edit the field selected
+2: Type in the new value for the field and press "OK"
+Expected Result: New window opens up with a message
+telling the user that the product has been successfully 
+edited.
+Test Result: Passed.
+
+Test 41: Viewing information about your store
+steps:
+1: Start on the main menu after logging in as a seller
+2: Select from the dropdown menu: View information about
+your store
+Expected Result: New dropdown menu opens up prompting the user
+to select which store they want to view information on
+
+Test 42: Viewing information from the store selected
+Steps:
+1: Start on the menu after completing test 41
+2: Select which store to view information on
+Expected Result: new window opens up with a history of sales
+from the store selected
+
+Test 43: Viewing information from a store with no sales
+Steps:
+1: Start on the menu after completing test 41
+2: Select a store to view information on which has
+no sales history
+Expected Result: new error window opens up telling the
+user that there is no activity from the store selected
+Test Result: Passed.
+
+Test 44: Viewing a customers shopping cart
+steps:
+1: Start on the main menu after logging in as seller
+2: From the dropdown menu, select view a customers shopping 
+cart and press "OK"
+Expected Result: New keyboard input window opens up with
+a keyboard input window prompting the user to input
+the email of which customer cart to view.
+
+Test 45: Entering the Email of the customer and viewing 
+their shopping cart
+steps:
+1: Start on the keyboard input window after completing test 44
+2: enter the email of the customer whos shopping 
+cart is to be viewed.
+Expected Result: New window opens up with a list
+of the products in that customers shopping cart
+
+Test 46: Attempting to view the shopping cart of a customer
+whos cart is empty
+steps:
+1: Start on the keyboard input window after completing test 44
+2:enter the email of the customer whos shopping
+cart is empty.
+Expected Result: New error window opens up telling the 
+user that nothing is in this customers cart yet
+Test Result: Passed.
+
+Test 47: Importing a CSV file of products
+steps:
+1: Start on the main menu after logging in as seller
+2: Select from the dropdown menu: Import CSV file of products
+Expected Result: New Keyboard window opens prompting 
+the user to input the path of the CSV file to input
+Test Result: Passed.
+
+
+
+
+
+
+
 
 
 
