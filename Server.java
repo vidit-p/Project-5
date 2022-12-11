@@ -2,12 +2,13 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
-public class Server implements Runnable{
+public class Server implements Runnable {
     Socket socket;
 
     public Server(Socket socket) {
         this.socket = socket;
     }
+
     public void run() {
         while (true) {
             try {
@@ -126,7 +127,7 @@ public class Server implements Runnable{
                             break;
                         }
                         if (role.equals("1")) {
-                            Customer customer = new Customer (username, password);
+                            Customer customer = new Customer(username, password);
                             customer.initialise();
                             String str = br.readLine(); // read an empty string to follow protocol
 
@@ -267,7 +268,7 @@ public class Server implements Runnable{
                                     String searchTerm = br.readLine();// reads the search term
                                     ArrayList<String> search = customer.searchUsingTerms(searchTerm);
                                     String output = String.join(";", search);
-                                    if (search.isEmpty()){
+                                    if (search.isEmpty()) {
                                         pw.write("");
                                         pw.println();
                                         pw.flush();
@@ -465,7 +466,7 @@ public class Server implements Runnable{
                                         pw.write("0");
                                         pw.println();
                                         pw.flush();
-                                    } catch (FileNotFoundException e){
+                                    } catch (FileNotFoundException e) {
                                         pw.write("1");
                                         pw.println();
                                         pw.flush();
@@ -493,9 +494,6 @@ public class Server implements Runnable{
                             }
 
                         }
-
-
-
 
 
                     } catch (SocketException e) {
