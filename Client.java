@@ -6,6 +6,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.*;
 
+/**
+ * Client class
+ *
+ * @author Vidit Patel
+ * @version December 11, 2022
+ */
+
 public class Client {
 
     public static void main(String[] args) {
@@ -249,7 +256,7 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else if (next.equals("Add to cart")){
+                        } else if (next.equals("Add to cart")) {
                             pw.write("2");
                             pw.println();
                             pw.flush();
@@ -362,7 +369,7 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else if (next1.equals("Add to cart")){
+                        } else if (next1.equals("Add to cart")) {
                             pw.write("2");
                             pw.println();
                             pw.flush();
@@ -474,7 +481,7 @@ public class Client {
                                 JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
-                        } else if (next1.equals("Add to cart")){
+                        } else if (next1.equals("Add to cart")) {
                             pw.write("2");
                             pw.println();
                             pw.flush();
@@ -677,7 +684,7 @@ public class Client {
                                     JOptionPane.showMessageDialog(null, "ERROR: Not enough quantity available.",
                                             "ERROR", JOptionPane.ERROR_MESSAGE);
                                 }
-                            } else if (next1.equals("Add to cart")){
+                            } else if (next1.equals("Add to cart")) {
                                 pw.write("2");
                                 pw.println();
                                 pw.flush();
@@ -767,7 +774,7 @@ public class Client {
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
-                                        "ease enter again.", "Error",JOptionPane.ERROR_MESSAGE);
+                                        "ease enter again.", "Error", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                         String price;
@@ -782,7 +789,7 @@ public class Client {
                                 break;
                             } catch (NumberFormatException e) {
                                 JOptionPane.showMessageDialog(null, "Invalid input! Pl" +
-                                        "ease enter again", "Error",JOptionPane.ERROR_MESSAGE);
+                                        "ease enter again", "Error", JOptionPane.ERROR_MESSAGE);
                             }
                         }
 
@@ -820,7 +827,7 @@ public class Client {
                                         lineArray[0], lineArray[1], lineArray[2]);
                                 index++;
                             }
-                            String deleteProduct = (String) JOptionPane.showInputDialog(null ,"Which product " +
+                            String deleteProduct = (String) JOptionPane.showInputDialog(null, "Which product " +
                                             "would you like to delete?", "Remove Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
                             if (deleteProduct == null) {
@@ -861,7 +868,7 @@ public class Client {
                                         lineArray[5]);
                                 index++;
                             }
-                            String editProduct = (String) JOptionPane.showInputDialog(null ,"Which product " +
+                            String editProduct = (String) JOptionPane.showInputDialog(null, "Which product " +
                                             "would you like to edit?", "Edit Product", JOptionPane.QUESTION_MESSAGE,
                                     null, out, out[0]);
 
@@ -925,7 +932,7 @@ public class Client {
                                         }
                                     }
                                 }
-                                String write  = productNumber + "," + name + "," + description + "," + quantity + "," + price;
+                                String write = productNumber + "," + name + "," + description + "," + quantity + "," + price;
 
                                 pw.write(write);
                                 pw.println();
@@ -1048,7 +1055,7 @@ public class Client {
                             String cart = br.readLine();
                             if (cart.equals("1")) {
                                 JOptionPane.showMessageDialog(null, "Error! Nothing " +
-                                        "is in this customer's cart yet!", "Error", JOptionPane.ERROR_MESSAGE) ;
+                                        "is in this customer's cart yet!", "Error", JOptionPane.ERROR_MESSAGE);
                             } else {
                                 String[] cartArray = cart.split(";");
                                 String out = "Customer Cart:\n";
