@@ -1,0 +1,5 @@
+332690,coffee,new store,  mild brew,24,30.5,qwert@purdue.edu
+916515,bottle,random, blue bottle,25,30.0,qwert@purdue.edu
+111111,watch,rolex,                          gold watch,0,900.0,qwert@purdue.edu
+366410,candy,thread store, chocolate candy,0,2.49,qwert@purdue.edu
+123456,pants,levis,skinny fit pants,10,20.0,qwert@purdue.edu

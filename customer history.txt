@@ -1,0 +1,64 @@
+abc@purdue.edu,2399270,shoe,adidas,shoes of size 8,25,60.0,pqr@purdue.edu
+abc@purdue.edu,2399270,shoe,adidas,shoes of size 8,20,60.0,pqr@purdue.edu
+abc@purdue.edu,2399270,shoe,adidas,shoes of size 8,18,60.0,pqr@purdue.edu
+abc@purdue.edu,2399270,shoe,adidas,shoes of size 8,15,60.0,pqr@purdue.edu
+abc@purdue.edu,2399270,shoe,adidas,shoes of size 8,5,60.0,pqr@purdue.edu
+abc@purdue.edu,1812666,cap,hi,size 3 cap,27,20.0,pqr@purdue.edu
+abc@purdue.edu,1233434,hat,cat,hat size 3,17,10.0,abc@purdue.edu
+abc@purdue.edu,9158474,ball,tommy,size 5 ball,14,50.0,pqr@purdue.edu
+abc@purdue.edu,9930055,shoes,nike,size 9 shoes,20,60.0,pqr@purdue.edu
+abc@purdue.edu,9930055,shoes,nike,size 9 shoes,17,60.0,pqr@purdue.edu
+abc@purdue.edu,9158474,ball,tommy,size 5 ball,13,50.0,pqr@purdue.edu
+abc@purdue.edu,3077807,shirt,bamba,shirt size small,29,50.0,abc@purdue.edu
+abc@purdue.edu,9930055,shoes,nike,size 9 shoes,16,60.0,pqr@purdue.edu
+abc@purdue.edu,1233434,hat,cat,hat size 3,16,10.0,abc@purdue.edu
+abc@purdue.edu,1812666,cap,hi,size 3 cap,26,20.0,pqr@purdue.edu
+abc@purdue.edu,1233434,hat,cat,hat size 3,15,10.0,abc@purdue.edu
+abc@purdue.edu,2399270,shoe,adidas,shoes of size 8,4,60.0,pqr@purdue.edu
+abc@purdue.edu,307780,shirt,bamba,shirt size small,28,50.0,abc@purdue.edu
+abc@purdue.edu,750370,coffee,new store,large can of coffee,49,20.0,qwert@purdue.edu
+abc@purdue.edu,239927,shoe,adidas,shoes of size 8,3,60.0,pqr@purdue.edu
+abc@purdue.edu,239927,shoe,adidas,shoes of size 8,2,60.0,pqr@purdue.edu
+abc@purdue.edu,663916,cap,hi,size 3 cap,29,20.0,pqr@purdue.edu
+abc@purdue.edu,123343,hat,cat,hat size 3,14,10.0,abc@purdue.edu
+abc@purdue.edu,239927,shoe,adidas,shoes of size 8,1,60.0,pqr@purdue.edu
+abc@purdue.edu,307780,shirt,bamba,shirt size small,27,50.0,abc@purdue.edu
+abc@purdue.edu,750370,coffee,new store,large can of coffee,48,20.0,qwert@purdue.edu
+abc@purdue.edu,915847,ball,tommy,size 5 ball,12,50.0,pqr@purdue.edu
+abc@purdue.edu,123343,hat,cat,hat size 3,13,10.0,abc@purdue.edu
+abc@purdue.edu,181266,cap,hi,size 3 cap,25,20.0,pqr@purdue.edu
+abc@purdue.edu,123343,hat,cat,hat size 3,12,10.0,abc@purdue.edu
+abc@purdue.edu,239927,shoe,adidas,shoes of size 8,0,60.0,pqr@purdue.edu
+abc@purdue.edu,181266,cap,hi,size 3 cap,24,20.0,pqr@purdue.edu
+abc@purdue.edu,181266,cap,hi,size 3 cap,23,20.0,pqr@purdue.edu
+abc@purdue.edu,307780,shirt,bamba,shirt size small,26,50.0,abc@purdue.edu
+abc@purdue.edu,181266,cap,hi,size 3 cap,22,20.0,pqr@purdue.edu
+abc@purdue.edu,915847,ball,tommy,size 5 ball,11,50.0,pqr@purdue.edu
+abc@purdue.edu,332690,coffee,new store, mild brew,25,30.0,qwert@purdue.edu
+abc@purdue.edu,332690,coffee,new store,  mild brew,24,30.5,qwert@purdue.edu
+abc@purdue.edu,916515,bottle,random, blue bottle,29,30.0,qwert@purdue.edu
+abc@purdue.edu,916515,bottle,random, blue bottle,28,30.0,qwert@purdue.edu
+abc@purdue.edu,915847,ball,tommy,size 5 ball,10,50.0,pqr@purdue.edu
+abc@purdue.edu,307780,shirt,bamba,shirt size small,25,50.0,abc@purdue.edu
+abc@purdue.edu,181266,cap,hi,size 3 cap,21,20.0,pqr@purdue.edu
+abc@purdue.edu,189430,cap,hi,size 3 cap,29,20.0,pqr@purdue.edu
+abc@purdue.edu,111111,watch,rolex,      gold watch,9,999.99,qwert@purdue.edu
+abc@purdue.edu,993005,shoes,nike,size 9 shoes,15,60.0,pqr@purdue.edu
+abc@purdue.edu,181266,cap,hi,size 3 cap,20,20.0,pqr@purdue.edu
+abc@purdue.edu,111111,watch,rolex,         gold watch,8,999.99,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,         gold watch,7,999.99,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,           gold watch,6,999.99,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,           gold watch,5,999.99,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,              gold watch,4,1000.0,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,              gold watch,3,1000.0,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,              gold watch,2,1000.0,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,              gold watch,1,1000.0,qwert@purdue.edu
+abc@purdue.edu,111111,watch,rolex,              gold watch,0,1000.0,qwert@purdue.edu
+abc@purdue.edu,993005,shoes,nike,size 9 shoes,13,60.0,pqr@purdue.edu
+vidit5904@gmail.com,366410,candy,thread store,chocolate candy,20,3.0,qwert@purdue.edu
+abc@purdue.edu,366410,candy,thread store,chocolate candy,0,3.0,qwert@purdue.edu
+abc@purdue.edu,189430,cap,hi,size 3 cap,27,20.0,pqr@purdue.edu
+abc@purdue.edu,181266,cap,hi,size 3 cap,19,20.0,pqr@purdue.edu
+abc@purdue.edu,915847,ball,tommy,size 5 ball,7,50.0,pqr@purdue.edu
+abc@purdue.edu,663916,cap,hi,size 3 cap,26,20.0,pqr@purdue.edu
+abc@purdue.edu,916515,bottle,random, blue bottle,25,30.0,qwert@purdue.edu
