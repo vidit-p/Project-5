@@ -1,2 +1,0 @@
-1,BuyerAdmin@purdue.edu,admin
-2,SellerAdmin@purdue.edu,admin
