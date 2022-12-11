@@ -2,6 +2,12 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
+/**
+ * Server class
+ *
+ * @author Vidit Patel
+ * @version December 11, 2022
+ */
 public class Server implements Runnable {
     Socket socket;
 
