@@ -71,7 +71,6 @@ public class Seller {
     }
 
 
-
     public synchronized void writeFile() {
         File f = new File("database.txt");
         try {
@@ -98,7 +97,7 @@ public class Seller {
             productNumbers.add(number);
         }
         Random random = new Random();
-        productNumber = random.nextInt(100000,999999);
+        productNumber = random.nextInt(100000, 999999);
         while (productNumbers.contains(productNumber)) {
             productNumber = random.nextInt();
         }
@@ -300,9 +299,7 @@ public class Seller {
 
         //seller.editProduct(239927061, "shoe", "shoes of size 8", 30, 60);
         //seller.deleteProduct(68397694);
-
-        seller.addProduct("hello", "bat", seller.email, "size 5 bat", 30,20);
-        seller.addProduct("hi", "cap", seller.getEmail(), "size 3 cap", 30,20);
+        
         /*ArrayList<String> storeInfo = seller.storeInfo("fbekj");
         if (storeInfo == null) {
             System.out.println("the store does not exist!");
