@@ -56,6 +56,7 @@ public class Seller {
     }
 
     public synchronized void initialise() {
+        allProducts = new ArrayList<>();
         File f = new File("database.txt");
         try {
             FileReader fr = new FileReader(f);
@@ -97,9 +98,9 @@ public class Seller {
             productNumbers.add(number);
         }
         Random random = new Random();
-        productNumber = random.nextInt(100000, 999999);
-        while (productNumbers.contains(productNumber)) {
-            productNumber = random.nextInt();
+        productNumber = 1;
+        while (productNumbers.contains(productNumber) || productNumber < 100000) {
+            productNumber = random.nextInt(999999);
         }
         int return1 = 0;
         try {
@@ -109,9 +110,9 @@ public class Seller {
 
             for (String line : allProducts) {
                 String[] lineArray = line.split(",");
-                if (lineArray[6].equalsIgnoreCase(sellerName)) {
-                    if (!lineArray[2].equalsIgnoreCase(storeName)) {
-                        return1 = 1;
+                if (!lineArray[6].equalsIgnoreCase(sellerName)) {
+                    if (lineArray[2].equalsIgnoreCase(storeName)) {
+                        return 1;
                     } else {
                         return1 = 0;
                     }
@@ -120,8 +121,6 @@ public class Seller {
             }
             if (!stores.contains(storeName)) {
                 return1 = 2;
-            } else if (return1 == 1) {
-                return return1;
             }
 
             String out = productNumber + "," + productName + "," + storeName + ","
@@ -131,7 +130,7 @@ public class Seller {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return return1;
+        return 2;
     }
 
     //returns 1 if the product does not belong to seller's store
@@ -299,7 +298,7 @@ public class Seller {
 
         //seller.editProduct(239927061, "shoe", "shoes of size 8", 30, 60);
         //seller.deleteProduct(68397694);
-        
+
         /*ArrayList<String> storeInfo = seller.storeInfo("fbekj");
         if (storeInfo == null) {
             System.out.println("the store does not exist!");
