@@ -376,13 +376,14 @@ public class Server implements Runnable {
                                     String[] productArray = product.split(",");
                                     int add = seller.addProduct(productArray[0], productArray[1], productArray[2], productArray[3],
                                             Integer.parseInt(productArray[4]), Double.parseDouble(productArray[5]));
+                                    System.out.println(add);
 
 
                                     if (add == 1) {
                                         pw.write("ERROR"); // writes error if the store is not owned by the seller
                                         pw.println();
                                         pw.flush();
-                                    } else if (add == 2) {
+                                    } else {
                                         pw.write("SUCCESS"); // writes success if the product is successfully added
                                         pw.println();
                                         pw.flush();
