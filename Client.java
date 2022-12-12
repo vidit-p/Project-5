@@ -6,13 +6,6 @@ import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.*;
 
-/**
- * Client class
- *
- * @author Vidit Patel
- * @version December 11, 2022
- */
-
 public class Client {
 
     public static void main(String[] args) {
